@@ -1,1 +1,1 @@
-# social-media-project
+# daily-information-project
