@@ -1,0 +1,8 @@
+.nav-items {
+  display: flex !important;
+}
+
+i {
+  width: 24px;
+  height: 24px;
+}
