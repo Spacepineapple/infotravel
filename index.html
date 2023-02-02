@@ -11,6 +11,18 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
+    <!-- jQuery UI -->
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <!-- Font Awesome 6.2 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Document</title>
   </head>
@@ -18,13 +30,29 @@
     <div class="container text-center">
       <header class="row">
         <div class="col">
-          <nav class="navbar bg-light">
-            <div class="container-fluid">
+          <nav class="navbar sticky-top bg-light">
+            <div class="container-fluid nav-items">
+              <a class="navbar-brand" href="#">
+                <img src="" class="d-inline-block align-text-top" />
+                Logo
+              </a>
               <form class="d-flex" role="search">
                 <input
                   class="form-control me-2"
                   type="search"
-                  placeholder="Search"
+                  placeholder="Location to visit"
+                  aria-label="Search"
+                />
+                <input
+                  class="form-control me-2 datepicker"
+                  type="search"
+                  placeholder="From"
+                  aria-label="Search"
+                />
+                <input
+                  class="form-control me-2 datepicker"
+                  type="search"
+                  placeholder="To"
                   aria-label="Search"
                 />
                 <button class="btn btn-outline-success" type="submit">
@@ -40,7 +68,23 @@
         <div class="col col-8">Main</div>
       </div>
       <div class="row">
-        <div class="col">Footer</div>
+        <footer class="py-3 my-4">
+          <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-muted">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-muted">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-muted">Features</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-muted">FAQs</a>
+            </li>
+          </ul>
+          <p class="text-center text-muted">© 2022 Company, Inc</p>
+        </footer>
       </div>
     </div>
 
@@ -55,6 +99,10 @@
       integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
       crossorigin="anonymous"
     ></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!-- Custom JS Script -->
     <script src="./assets/js/script.js"></script>
