@@ -3,11 +3,17 @@ let locationInputEl = document.querySelector("#location");
 let fromDateInputEl = document.querySelector("#from-date");
 let toDateInputEl = document.querySelector("#to-date");
 let searchBtnEl = document.querySelector("#search-btn");
+let currentLocationEl = document.querySelector("#location");
+let currentDateEl = document.querySelector("#current-date");
+let weatherDescriptionEl = document.querySelector("#weather-description");
 let currentWeatherIconEl = document.querySelector("#current-weather-icon");
 let currentTempValueEl = document.querySelector("#current-temp-value");
-let currentFeelsLikeValueEl = document.querySelector("#current-fl-value");
-let currentWindValueEl = document.querySelector("#current-wind-value");
-let currentHumidityValueEl = document.querySelector("#current-humidity-value");
+let highTempValueEl = document.querySelector("#high-temp-value");
+let lowTempValueEl = document.querySelector("#low-temp-value");
+let feelsLikeValueEl = document.querySelector("#fl-value");
+let windValueEl = document.querySelector("#wind-value");
+let humidityValueEl = document.querySelector("#humidity-value");
+let visibilityValueEl = document.querySelector("#visibility-value");
 
 let apiKey = "40640050a45cbd8cf8d35ada1e14fee3";
 
@@ -48,16 +54,21 @@ function getWeatherData(lat, lon) {
       console.log(weatherInfo);
 
       // Display the current weather data on the screen
-      let date = moment(weatherInfo[0].dt, "X").format("dddd, MMM Do YYYY");
-      console.log(date);
-      // currentWeatherIconEl.setAttribute(
-      //   "src",
-      //   `http://openweathermap.org/img/wn/${weatherInfo[0].weather[0].icon}@2x.png`
-      // );
-      // currentTempValueEl.textContent = weatherInfo[0].main.temp;
-      // currentFeelsLikeValueEl.textContent = weatherInfo[0].main.feels_like;
-      // currentHumidityValueEl.textContent = weatherInfo[0].main.humidity;
-      // currentWindValueEl.textContent = weatherInfo[0].wind.speed;
+      currentDateEl.textContent = moment(weatherInfo[0].dt, "X").format(
+        "dddd, Do MMM YYYY"
+      );
+      currentWeatherIconEl.setAttribute(
+        "src",
+        `http://openweathermap.org/img/wn/${weatherInfo[0].weather[0].icon}@2x.png`
+      );
+      currentTempValueEl.textContent = weatherInfo[0].main.temp.toFixed();
+      highTempValueEl.textContent = weatherInfo[0].main.temp_max.toFixed(2);
+      lowTempValueEl.textContent = weatherInfo[0].main.temp_min.toFixed(2);
+      feelsLikeValueEl.textContent = weatherInfo[0].main.feels_like;
+      humidityValueEl.textContent = weatherInfo[0].main.humidity;
+      windValueEl.textContent = weatherInfo[0].wind.speed;
+
+      // Display the future weather forecast data on the screen
     });
 }
 
