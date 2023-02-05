@@ -3,6 +3,7 @@ let locationInputEl = document.querySelector("#location");
 let fromDateInputEl = document.querySelector("#from-date");
 let toDateInputEl = document.querySelector("#to-date");
 let searchBtnEl = document.querySelector("#search-btn");
+let currentWeatherIconEl = document.querySelector("#current-weather-icon");
 
 let apiKey = "40640050a45cbd8cf8d35ada1e14fee3";
 
@@ -41,6 +42,13 @@ function getWeatherData(lat, lon) {
     .then((weatherData) => {
       let weatherInfo = weatherData.list;
       console.log(weatherInfo);
+      console.log(weatherInfo[0].weather[0].icon);
+
+      // Display the current weather data on the screen
+      currentWeatherIconEl.setAttribute(
+        "src",
+        `http://openweathermap.org/img/wn/${weatherInfo[0].weather[0].icon}@2x.png`
+      );
     });
 }
 
