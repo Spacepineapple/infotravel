@@ -29,6 +29,10 @@ i {
   align-items: center;
 }
 
+.weather-description {
+  text-transform: capitalize;
+}
+
 .weather-left {
   display: flex;
   width: 40%;

@@ -61,6 +61,7 @@ function getWeatherData(lat, lon) {
       currentDateEl.textContent = moment(weatherInfo[0].dt, "X").format(
         "dddd, Do MMM YYYY"
       );
+      weatherDescriptionEl.textContent = weatherInfo[0].weather[0].description;
       currentWeatherIconEl.setAttribute(
         "src",
         `http://openweathermap.org/img/wn/${weatherInfo[0].weather[0].icon}@2x.png`
