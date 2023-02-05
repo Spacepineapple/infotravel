@@ -48,14 +48,16 @@ function getWeatherData(lat, lon) {
       console.log(weatherInfo);
 
       // Display the current weather data on the screen
-      currentWeatherIconEl.setAttribute(
-        "src",
-        `http://openweathermap.org/img/wn/${weatherInfo[0].weather[0].icon}@2x.png`
-      );
-      currentTempValueEl.textContent = weatherInfo[0].main.temp;
-      currentFeelsLikeValueEl.textContent = weatherInfo[0].main.feels_like;
-      currentHumidityValueEl.textContent = weatherInfo[0].main.humidity;
-      currentWindValueEl.textContent = weatherInfo[0].wind.speed;
+      let date = moment(weatherInfo[0].dt, "X").format("dddd, MMM Do YYYY");
+      console.log(date);
+      // currentWeatherIconEl.setAttribute(
+      //   "src",
+      //   `http://openweathermap.org/img/wn/${weatherInfo[0].weather[0].icon}@2x.png`
+      // );
+      // currentTempValueEl.textContent = weatherInfo[0].main.temp;
+      // currentFeelsLikeValueEl.textContent = weatherInfo[0].main.feels_like;
+      // currentHumidityValueEl.textContent = weatherInfo[0].main.humidity;
+      // currentWindValueEl.textContent = weatherInfo[0].wind.speed;
     });
 }
 

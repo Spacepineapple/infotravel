@@ -18,10 +18,26 @@ i {
   height: 24px;
 }
 
-.grid-item-center {
-  display: grid;
+/* Current Weather Styles */
+.current-weather-header {
+  display: flex;
   align-items: center;
-  justify-items: center;
+}
+
+.weather-left {
+  display: flex;
+  width: 40%;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border-right: 2px solid #eee;
+}
+
+.weather-icon {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
 }
 
 .weather-icon-large {
@@ -30,27 +46,32 @@ i {
   object-fit: contain;
 }
 
-.weather-icon {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-}
-
 .current-temp {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 0;
+  font-size: 2rem;
 }
 
-.current-temp-unit {
-  font-size: 1.5rem;
+.weather-right {
+  display: grid;
+  width: 60%;
+  justify-content: space-around;
+  gap: 0.5rem;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(2, auto);
+}
+
+.weather-info-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .label {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 0.75rem;
-  text-align: left;
-  color: hsl(200, 100%, 20%);
-  margin-bottom: 0;
+}
+
+.value-unit {
+  font-weight: lighter;
+  font-size: 0.75rem;
 }
