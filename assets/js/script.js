@@ -55,7 +55,6 @@ function getWeatherData(lat, lon) {
     .then((res) => res.json())
     .then((weatherData) => {
       let weatherInfo = weatherData.list;
-      console.log(weatherInfo);
 
       // Display the current weather data on the screen
       currentDateEl.textContent = moment(weatherInfo[0].dt, "X").format(
@@ -98,7 +97,6 @@ function getWeatherData(lat, lon) {
 
 searchBtnEl.addEventListener("click", function (e) {
   e.preventDefault();
-  console.log("Search button clicked");
   currentLocationEl.textContent = "";
   forecastContainerEl.innerHTML = "";
   getWeather(locationInputEl.value);
