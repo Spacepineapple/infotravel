@@ -57,6 +57,7 @@ i {
 
 .current-temp {
   font-size: 2rem;
+  font-weight: 400;
 }
 
 .weather-right {
@@ -75,9 +76,13 @@ i {
 }
 
 .label {
-  text-transform: uppercase;
-  font-weight: bold;
+  text-transform: capitalize;
+  font-weight: 500;
   font-size: 0.75rem;
+}
+
+.weather-value {
+  line-height: 1rem;
 }
 
 .value-unit {
@@ -104,4 +109,5 @@ i {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   text-transform: uppercase;
+  font-size: 0.75rem;
 }
