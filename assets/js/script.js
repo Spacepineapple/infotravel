@@ -20,6 +20,7 @@ let apiKey = "40640050a45cbd8cf8d35ada1e14fee3";
 
 /** Get user's location */
 let userLocation = {};
+console.log(userLocation);
 if (window.navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(
     (position) => {
@@ -58,7 +59,7 @@ function getWeatherData(lat, lon) {
 
       // Display the current weather data on the screen
       currentDateEl.textContent = moment(weatherInfo[0].dt, "X").format(
-        "dddd, Do MMM YYYY"
+        "dddd, MMM Do, h:mm:ss A"
       );
       weatherDescriptionEl.textContent = weatherInfo[0].weather[0].description;
       currentWeatherIconEl.setAttribute(
@@ -74,6 +75,7 @@ function getWeatherData(lat, lon) {
 
       // Display the future weather forecast data on the screen
       let fiveDayForecastArr = [
+        weatherInfo[0],
         weatherInfo[8],
         weatherInfo[16],
         weatherInfo[24],
