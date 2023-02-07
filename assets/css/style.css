@@ -111,3 +111,7 @@ i {
   text-transform: uppercase;
   font-size: 0.75rem;
 }
+
+#city-name {
+  text-transform: capitalize;
+}

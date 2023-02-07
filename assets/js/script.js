@@ -23,6 +23,7 @@ let populationPlaceholder = document.querySelector("#population");
 let bestTimePlaceholder = document.querySelector("#best-time");
 let currencyPlaceholder = document.querySelector("#currency");
 let timeZonePlaceholder = document.querySelector("#timezone");
+let cityNameField = document.querySelector("#city-name");
 let newsAPIKey = "pub_165518ddbc391a0563b33c28f98a88bc39c78"
 let cityName = ""
 let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`
@@ -291,6 +292,7 @@ function getLocationInformation() {
     .then((response) => response.json())
     .then((cityData) => {
       console.log(cityData)
+      cityNameField.textContent = cityData.name;
       let population = cityData.population;
       let timezone = cityData.timezone;
       populationPlaceholder.textContent = `Population: ${population}`;
@@ -301,7 +303,7 @@ function getLocationInformation() {
       fetch(radiusAPIURL)
       .then((response => response.json()))
       .then(placeData => {
-        console.log(placeData)
+        //console.log(placeData)
         let attractionHeadings = document.querySelectorAll(".attraction-heading");
         let attractionDescriptions = document.querySelectorAll(".attraction-description");
         let attractionImages = document.querySelectorAll(".attraction-image");
@@ -314,9 +316,10 @@ function getLocationInformation() {
           fetch(xidAPIURL)
           .then((response => response.json()))
           .then(attractionData => {
-            attractionDescriptions[i].textContent = attractionData.wikipedia_extracts.text.substr(0, 200) + "...";
+            console.log(attractionData);
             let imageURL = attractionData.preview.source;
             attractionImages[i].setAttribute("src", `${imageURL}`);
+            attractionDescriptions[i].textContent = attractionData.wikipedia_extracts.text.substr(0, 200) + "...";
           })
         }
         
@@ -325,7 +328,7 @@ function getLocationInformation() {
     })
 };
 
-getLocationInformation();
+//getLocationInformation();
 
 $(function () {
   $(".datepicker").datepicker();
