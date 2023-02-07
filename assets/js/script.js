@@ -15,6 +15,7 @@ let windValueEl = document.querySelector("#wind-value");
 let humidityValueEl = document.querySelector("#humidity-value");
 let visibilityValueEl = document.querySelector("#visibility-value");
 let forecastContainerEl = document.querySelector("#forecast-container");
+let savedLocationsBtnEl = document.querySelector("#saved-locations");
 
 let apiKey = "40640050a45cbd8cf8d35ada1e14fee3";
 
@@ -59,7 +60,7 @@ function getWeatherData(lat, lon) {
 
       // Display the current weather data on the screen
       currentDateEl.textContent = moment(weatherInfo[0].dt, "X").format(
-        "dddd, MMM Do, h:mm:ss A"
+        "ddd, MMM Do, h:mm A"
       );
       weatherDescriptionEl.textContent = weatherInfo[0].weather[0].description;
       currentWeatherIconEl.setAttribute(
@@ -99,11 +100,29 @@ function getWeatherData(lat, lon) {
 
 searchBtnEl.addEventListener("click", function (e) {
   e.preventDefault();
+  // Save the serached city name to local storage
+  let timeSearched = moment().format("ddd, MMM Do, h:mm A");
+  let itemToSaveKey = locationInputEl.value.trim();
+  localStorage.setItem(`${timeSearched}`, JSON.stringify(`${itemToSaveKey}`));
+
   currentLocationEl.textContent = "";
   forecastContainerEl.innerHTML = "";
   getWeather(locationInputEl.value);
+
+  // Todo - Display the "Saved Detinations" button if there are items in the local storage
 });
 
 $(function () {
   $(".datepicker").datepicker();
+});
+
+savedLocationsBtnEl.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  let storedCities = { ...localStorage };
+  console.log(storedCities);
+
+  for (const property of storedCities) {
+    // Create a btn within the modal display for each location
+  }
 });
