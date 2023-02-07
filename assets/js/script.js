@@ -16,7 +16,11 @@ let humidityValueEl = document.querySelector("#humidity-value");
 let visibilityValueEl = document.querySelector("#visibility-value");
 let forecastContainerEl = document.querySelector("#forecast-container");
 let savedLocationsBtnEl = document.querySelector("#saved-locations");
-
+let convertBtn = document.querySelector("#convertBtn")
+let newsCards = document.querySelectorAll(".news-card");
+let newsAPIKey = "pub_165518ddbc391a0563b33c28f98a88bc39c78"
+let cityName = ""
+let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`
 let apiKey = "40640050a45cbd8cf8d35ada1e14fee3";
 
 currency();
@@ -101,6 +105,8 @@ function getWeatherData(lat, lon) {
 
 searchBtnEl.addEventListener("click", function (e) {
   e.preventDefault();
+  cityName = e.currentTarget.form[0].value;
+  getNewsHeadlines();
   // Save the serached city name to local storage
   let timeSearched = moment().format("ddd, MMM Do, h:mm A");
   let itemToSaveKey = locationInputEl.value.trim();
@@ -110,13 +116,13 @@ searchBtnEl.addEventListener("click", function (e) {
   forecastContainerEl.innerHTML = "";
   getWeather(locationInputEl.value);
 
-  countryInfo();
-  image();
-
-  // Todo - Display the "Saved Detinations" button if there are items in the local storage
+countryInfo()
+image()
 });
 
-let convertBtn = document.querySelector("#convertBtn");
+$(function () {
+  $(".datepicker").datepicker();
+});
 
 savedLocationsBtnEl.addEventListener("click", function (e) {
   e.preventDefault();
@@ -244,6 +250,40 @@ function currency() {
       }
     });
 }
+   
+function getNewsHeadlines() {
+  let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`
+  fetch(newsURL)
+  .then((response) => response.json())
+  .then((newsData) => {
+    console.log(newsData);
+    for (let i=0; i<3; i++) {
+      let maxLength = 100;
+      const card = newsCards[i];
+      console.log(card);
+      const title = card.querySelector(".card-body").querySelector(".card-title");
+      title.textContent = newsData.results[i].title;
+      const newsText = card.querySelector(".card-body").querySelector(".card-text");
+      newsText.textContent = newsData.results[i].description.substr(0, maxLength) + "...";
+      const newsImage = card.querySelector(".card-img-top");
+      newsImage.setAttribute("src", newsData.results[i].image_url);
+      console.log(newsData.results[i].title);
+      console.log(newsData.results[i].description);
+    }
+  });
+}
+
+
+let cityAPIKey =  "5ae2e3f221c38a28845f05b6fc79de7689f7ec4f4ccd8b2ae7179f74";
+let apiURL = `http://api.opentripmap.com/0.1/en/places/geoname?name=London&apikey=${cityAPIKey}`;
+
+function getLocationInformation() {
+    fetch(apiURL)
+    .then((response) => response.json())
+    .then((cityData) => console.log(cityData))
+};
+
+getLocationInformation();
 
 $(function () {
   $(".datepicker").datepicker();
