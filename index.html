@@ -33,7 +33,6 @@
           <nav class="navbar sticky-top bg-light">
             <div class="container-fluid nav-items">
               <a class="navbar-brand" href="#">
-                <img src="" class="d-inline-block align-text-top" />
                 Logo
               </a>
               <form class="d-flex" role="search" id="search-form">
@@ -70,68 +69,83 @@
         <div class="col col-4 mt-4">
           <!--weather  -->
           <div class="row">
-            <h5>Current Weather</h5>
+            <!-- Current Weather -->
+            <div class="weather-header">
+              <div class="location" id="current-location">Bristol</div>
+              <div class="current-date" id="current-date">Sun 5 Feb 2023</div>
+              <div class="weather-description" id="weather-description">Cloudy</div>
+            </div>
             <div>
-              <div class="card mt-2">
-                <img class="card-img-top" src="..." alt="icon-weather">
-                <div class="card-body">
-                  <h6>Temperature</h6>
-                  <h6> wind</h6>
+              <div class="card mt-2 current-weather-card">
+                <div class="container current-weather-header">
+                  <div class="weather-left">
+                    <img class="weather-icon-large" src="http://openweathermap.org/img/wn/10d@2x.png" alt="Weather Icon" id="current-weather-icon">
+                    <div class="current-temp">
+                      <span class="current-temp-value" id="current-temp-value">8</span>&deg;
+                    </div>
+                  </div>
+                  <div class="weather-right">
+                    <div class="weather-info-group">
+                      <div class="label">High</div>
+                      <div><span class="high-temp-value weather-value" id="high-temp-value">10</span>&deg;</div>
+                    </div>
+                    <div class="weather-info-group">
+                      <div class="label">Feel like</div>
+                      <div><span class="feels-like-value weather-value" id="fl-value">10</span>&deg;</div>
+                    </div>
+                    <div class="weather-info-group">
+                      <div class="label">Wind</div>
+                      <div><span class="wind-value weather-value" id="wind-value">10</span><span class="value-unit">mph</span></div>
+                    </div>
+                    <div class="weather-info-group">
+                      <div class="label">Low</div>
+                      <div><span class="low-temp-value weather-value" id="low-temp-value">5</span>&deg;</div>
+                    </div>
+                    <div class="weather-info-group">
+                      <div class="label">Humidity</div>
+                      <div><span class="humidity-value weather-value" id="humidity-value">5</span>%</div>
+                    </div>
+                    <div class="weather-info-group">
+                      <div class="label">Visibility</div>
+                      <div><span class="visibility-value weather-value" id="visibility-value">5</span><span class="value-unit">km</span></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-
-            <div class="mt-3 mb-5">
-              <h5>7 Days forecast</h5>
-              <div class="card-group">
-                <div class="card">
-                  <img class="card-img-top" src="..." alt="icon-weather">
-                  <div class="card-body">
-                    <h5 class="card-title">Date</h5>
-                    <p class="card-text">temp</p>
-                  </div>
+            <!-- 4 day forecast -->
+              <div class="forecast-section" id="forecast-container">
+                <div class="forecast-card card">
+                  <img class="weather-icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="Weather Icon" id="current-weather-icon">
+                  <div class="forecast-day">Monday</div>
+                  <div>10&deg;</div>
                 </div>
-                <div class="card">
-                  <img class="card-img-top" src="..." alt="icon-weather">
-                  <div class="card-body">
-                    <h5 class="card-title">Date</h5>
-                    <p class="card-text">temp</p>
-                  </div>
+                <div class="forecast-card card">
+                  <img class="weather-icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="Weather Icon" id="current-weather-icon">
+                  <div class="forecast-day">Tuesday</div>
+                  <div>10&deg;</div>
                 </div>
-                <div class="card">
-                  <img class="card-img-top" src="..." alt="icon-weather">
-                  <div class="card-body">
-                    <h5 class="card-title">Date</h5>
-                    <p class="card-text">temp</p>
-                  </div>
+                <div class="forecast-card card">
+                  <img class="weather-icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="Weather Icon" id="current-weather-icon">
+                  <div class="forecast-day">Wednesday</div>
+                  <div>10&deg;</div>
                 </div>
-              </div>
-              <div class="card-group">
-                <div class="card">
-                  <img class="card-img-top" src="..." alt="icon-weather">
-                  <div class="card-body">
-                    <h5 class="card-title">Date</h5>
-                    <p class="card-text">temp</p>
-                  </div>
+                <div class="forecast-card card">
+                  <img class="weather-icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="Weather Icon" id="current-weather-icon">
+                  <div class="forecast-day">Thursday</div>
+                  <div>10&deg;</div>
                 </div>
-                <div class="card">
-                  <img class="card-img-top" src="..." alt="icon-weather">
-                  <div class="card-body">
-                    <h5 class="card-title">Date</h5>
-                    <p class="card-text">temp</p>
-                  </div>
+                <div class="forecast-card card">
+                  <img class="weather-icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="Weather Icon" id="current-weather-icon">
+                  <div class="forecast-day">Friday</div>
+                  <div>10&deg;</div>
                 </div>
-                <div class="card">
-                  <img class="card-img-top" src="..." alt="icon-weather">
-                  <div class="card-body">
-                    <h5 class="card-title">Date</h5>
-                    <p class="card-text">temp</p>
-                  </div>
+                <div class="forecast-card card">
+                  <img class="weather-icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="Weather Icon" id="current-weather-icon">
+                  <div class="forecast-day">Saturday</div>
+                  <div>10&deg;</div>
                 </div>
               </div>
-
-            </div>
-
           </div>
 
           <!--currency  -->
@@ -140,26 +154,51 @@
             <form>
               <div class="row">
                 <div class="col">
-                  <input type="text" class="form-control" placeholder="From">
+                  <input id ="input-money"type="number" class="form-control" placeholder="From">
+                  <select id="from-select" class="form-control form-control-sm">
+                    
+                  </select>
+                  
                 </div>
+               
                 <div class="col">
-                  <input type="text" class="form-control" placeholder="to">
+                  <input id="total-currency" type="text" class="form-control" placeholder="To">
+                  <!-- <h5 id="total-currency"></h5> -->
+                  <select id = "to-select"class="form-control form-control-sm">
+
+                  </select>
+                  
                 </div>
               </div>
-              <button class="btn btn-primary mt-3" type="button">Convert</button>
+              <button class="btn btn-primary mt-3" id="convertBtn" type="button">Convert</button>
             </form>
           </div>
 
           <!--Travel info  -->
 
           <div class="container mt-5 pb-5">
-            <h5 class="mt-5 pt-5">Travel Information</h5>
+            <h5 class="mt-5 pt-5">Country Information</h5>
             <div class="row mt-3">
               <div class="col-sm">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title">title</h5>
-                    <p class="card-text">text</p>
+                    <h5 class="card-title" id="Tcountry"></h5>
+                    <p class="card-text mb-0" id="Tcapital"></p>
+                    <p class="mb-0" id = "Tcontinent"></p>
+                    <p class="mb-0" id = "Tcurrency"></p>
+                    <p class="mb-0" id = "TcurrencyCode"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <div class="card">
+                  <div id="test" class="card-body">
+                    <h5 class="card-title">Society</h5>
+                    <p class="card-text mb-0" id="Tlanguage" ></p>
+                    <p class="mb-0" id = "Tpop"></p>
+                    <p class="card-text" id="Twebsite"></p>
                   </div>
                 </div>
               </div>
@@ -168,18 +207,10 @@
               <div class="col-sm">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title">title</h5>
-                    <p class="card-text">text</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">title</h5>
-                    <p class="card-text">text</p>
+                    <h5 class="card-title">Driving</h5>
+                    <p class="card-text mb-0" id="Tdrive"></p>
+                    <p class="card-text" id="Tcar"></p>
+                    <p class="card-text" id="Ttime"></p>
                   </div>
                 </div>
               </div>
@@ -218,7 +249,7 @@
             <h3>City Name</h3>
             <div class="gap-2 d-flex justify-content-center">
               <div class="col col-6">
-                <img src="https://via.placeholder.com/150">
+                <img id="image1">
                 <h4>Description</h4>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Numquam sint, officia provident maxime eum expedita natus illum
@@ -347,7 +378,7 @@
             your preiously saved searches</h4>
             <div class="d-grid gap-2 d-flex justify-content-center">
               <button class="btn btn-primary me-md-2" type="button">New Search</button>
-              <button class="btn btn-info" type="button">Saved Destinations</button>
+              <button class="btn btn-info" type="button" id="saved-locations">Saved Destinations</button>
             </div>
         </div>
       </div>
@@ -388,6 +419,9 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 
     <!-- Custom JS Script -->
     <script src="./assets/js/script.js"></script>
