@@ -1,3 +1,11 @@
+:root {
+  --light-clr: #fdfffc;
+  --dark-clr: #13070c;
+  --gray-clr: #888384;
+  --dark-gray-clr: #343232;
+  --accent-clr: #fca311;
+}
+
 *,
 *::after,
 *::before {
