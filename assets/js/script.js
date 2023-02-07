@@ -319,7 +319,11 @@ function getLocationInformation() {
             console.log(attractionData);
             let imageURL = attractionData.preview.source;
             attractionImages[i].setAttribute("src", `${imageURL}`);
-            attractionDescriptions[i].textContent = attractionData.wikipedia_extracts.text.substr(0, 200) + "...";
+            try {
+              attractionDescriptions[i].textContent = attractionData.wikipedia_extracts.text.substr(0, 200) + "...";
+            } catch (err) {
+              attractionDescriptions[i].textContent = "No description available for this attraction";
+            }
           })
         }
         

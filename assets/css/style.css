@@ -112,6 +112,10 @@ i {
   font-size: 0.75rem;
 }
 
+.attraction-section {
+  margin-left: 1rem;
+}
+
 #city-name {
   text-transform: capitalize;
 }
