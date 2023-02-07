@@ -142,7 +142,6 @@ function countryInfo() {
   let Tcontinent = document.querySelector("#Tcontinent");
   let Twebsite = document.querySelector("#Twebsite");
   let country = locationInputEl.value;
-  let map = document.querySelector("#map");
 
   fetch("https://restcountries.com/v3.1/name/" + country)
     .then((response) => response.json())
