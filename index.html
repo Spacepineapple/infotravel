@@ -140,26 +140,57 @@
             <form>
               <div class="row">
                 <div class="col">
-                  <input type="text" class="form-control" placeholder="From">
+                  <input id ="input-money"type="number" class="form-control" placeholder="From">
+                  <select id="from-select" class="form-control form-control-sm">
+                    <option value="EUR">Euro</option>
+                    <option value="GBP">GBP</option>
+                    <option value="USD">Dollars</option>
+                    
+                  </select>
+                  
                 </div>
+               
                 <div class="col">
-                  <input type="text" class="form-control" placeholder="to">
+                  <input id="total-currency" type="text" class="form-control" placeholder="To">
+                  <!-- <h5 id="total-currency"></h5> -->
+                  <select id = "to-select"class="form-control form-control-sm">
+                    <option value="EUR">Euro</option>
+                    <option value="GBP">GBP</option>
+                    <option value="USD">Dollars</option>
+                  </select>
+                  
                 </div>
               </div>
-              <button class="btn btn-primary mt-3" type="button">Convert</button>
+              <button class="btn btn-primary mt-3" id="convertBtn" type="button">Convert</button>
             </form>
           </div>
 
           <!--Travel info  -->
 
           <div class="container mt-5 pb-5">
-            <h5 class="mt-5 pt-5">Travel Information</h5>
+            <h5 class="mt-5 pt-5">Country Information</h5>
             <div class="row mt-3">
               <div class="col-sm">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title">title</h5>
-                    <p class="card-text">text</p>
+                    <h5 class="card-title" id="Tcountry"></h5>
+                    <p class="card-text mb-0" id="Tcapital"></p>
+                    <p class="mb-0" id = "Tcontinent"></p>
+                    <p class="mb-0" id = "Tpop"></p>
+                    <p class="mb-0" id = "Tcurrency"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <div class="card">
+                  <div id="test" class="card-body">
+                    <h5 class="card-title">Language</h5>
+                    <p class="card-text" id="Tlanguage" ></p>
+                    <p class="card-text" id="Tdrive"></p>
+                    <p class="card-text" id="Tcar"></p>
+                    <p class="card-text" id="Twebsite"></p>
                   </div>
                 </div>
               </div>
@@ -168,18 +199,8 @@
               <div class="col-sm">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title">title</h5>
-                    <p class="card-text">text</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">title</h5>
-                    <p class="card-text">text</p>
+                    <h5 class="card-title">Current Time</h5>
+                    <p class="card-text" id="Ttime"></p>
                   </div>
                 </div>
               </div>
@@ -218,7 +239,7 @@
             <h3>City Name</h3>
             <div class="gap-2 d-flex justify-content-center">
               <div class="col col-6">
-                <img src="https://via.placeholder.com/150">
+                <img id="image1">
                 <h4>Description</h4>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Numquam sint, officia provident maxime eum expedita natus illum
