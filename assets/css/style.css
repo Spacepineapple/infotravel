@@ -1,3 +1,11 @@
+:root {
+  --light-clr: #fdfffc;
+  --dark-clr: #13070c;
+  --gray-clr: #888384;
+  --dark-gray-clr: #343232;
+  --accent-clr: #fca311;
+}
+
 *,
 *::after,
 *::before {
@@ -133,4 +141,12 @@ i {
   margin-bottom: 0.5rem;
   text-transform: uppercase;
   font-size: 0.75rem;
+}
+
+.attraction-section {
+  margin-left: 1rem;
+}
+
+#city-name {
+  text-transform: capitalize;
 }
