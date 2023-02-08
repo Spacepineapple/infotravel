@@ -37,7 +37,7 @@ let newsAPIKey = "pub_165518ddbc391a0563b33c28f98a88bc39c78";
 let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`;
 let apiKey = "40640050a45cbd8cf8d35ada1e14fee3";
 let cityAPIKey = "5ae2e3f221c38a28845f05b6fc79de7689f7ec4f4ccd8b2ae7179f74";
-let travelAPIURL = `http://api.opentripmap.com/0.1/en/places/geoname?name=${cityName}&apikey=${cityAPIKey}`;
+let travelAPIURL;
 
 frontImage.src = "./assets/image/travel.jpg";
 
@@ -134,6 +134,7 @@ searchBtnEl.addEventListener("click", function (e) {
   hiddenFoot.hidden = false;
   imageDiv.hidden = true;
   cityName = e.currentTarget.form[0].value;
+  getLocationInformation();
   getNewsHeadlines();
   // Save the serached city name to local storage
   let timeSearched = moment().format("ddd, MMM Do, h:mm A");
@@ -309,6 +310,7 @@ function getNewsHeadlines() {
   });
 }
 function getLocationInformation() {
+  travelAPIURL = `http://api.opentripmap.com/0.1/en/places/geoname?name=${cityName}&apikey=${cityAPIKey}`;
   fetch(travelAPIURL)
     .then((response) => response.json())
     .then((cityData) => {
