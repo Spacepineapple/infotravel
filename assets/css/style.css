@@ -10,7 +10,30 @@
 *::after,
 *::before {
   box-sizing: border-box;
+  
+
 }
+
+h2{
+  color: #fca311;
+}
+
+h3{
+  color: #13070c;
+}
+
+h4, h5{
+  color: #888384
+}
+
+button {
+
+  background-color: #fca311 !important;
+  border-color: #b36f10 !important;
+  color: white  !important;
+}
+  
+
 
 img {
   height: 150px;
@@ -120,6 +143,7 @@ i {
   font-size: 0.75rem;
 }
 
+<<<<<<< HEAD
 .floating-btn {
   position: fixed;
   bottom: 100px;
@@ -133,3 +157,12 @@ i {
 .modal-location-btn {
   margin-bottom: 1rem;
 }
+=======
+.attraction-section {
+  margin-left: 1rem;
+}
+
+#city-name {
+  text-transform: capitalize;
+}
+>>>>>>> 7498e81200cbd870f192492e682577279850033c
