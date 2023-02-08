@@ -1,15 +1,22 @@
+/* Font imports */
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap");
+
 :root {
+  /* Colours */
   --light-clr: #fdfffc;
   --dark-clr: #13070c;
   --gray-clr: #888384;
   --dark-gray-clr: #343232;
   --accent-clr: #fca311;
+
+  /* Fonts */
+  --headings-font-family: "Montserrat", sans-serif;
+  --paragraphs-font-family: "Lato", sans-serif;
 }
 
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
+body {
+  font-family: var(--paragraphs-font-family);
+  color: var(--dark-clr);
 }
 
 h2 {
