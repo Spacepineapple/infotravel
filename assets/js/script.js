@@ -15,37 +15,52 @@ let windValueEl = document.querySelector("#wind-value");
 let humidityValueEl = document.querySelector("#humidity-value");
 let visibilityValueEl = document.querySelector("#visibility-value");
 let forecastContainerEl = document.querySelector("#forecast-container");
-let savedLocationsBtnEl = document.querySelector("#saved-locations");
-let convertBtn = document.querySelector("#convertBtn")
+let savedLocationsBtnEl = document.querySelector("#saved-btn");
+let convertBtn = document.querySelector("#convertBtn");
 let newsCards = document.querySelectorAll(".news-card");
+let modalContainerEl = document.querySelector("#modal-body");
 let descriptionPlaceholder = document.querySelector("#city-description");
 let populationPlaceholder = document.querySelector("#population");
 let bestTimePlaceholder = document.querySelector("#best-time");
 let currencyPlaceholder = document.querySelector("#currency");
 let timeZonePlaceholder = document.querySelector("#timezone");
 let cityNameField = document.querySelector("#city-name");
-let newsAPIKey = "pub_165518ddbc391a0563b33c28f98a88bc39c78"
-let cityName = ""
-let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`
+let hiddenDiv = document.querySelector("#hidden-div");
+let hiddenFoot = document.querySelector("#hidden-foot");
+let imageDiv = document.querySelector("#image-div");
+let frontImage = document.querySelector("#front-image");
+
+let cityName = "";
+currency();
+
+let newsAPIKey = "pub_165518ddbc391a0563b33c28f98a88bc39c78";
+let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`;
 let apiKey = "40640050a45cbd8cf8d35ada1e14fee3";
-let cityAPIKey =  "5ae2e3f221c38a28845f05b6fc79de7689f7ec4f4ccd8b2ae7179f74";
+let cityAPIKey = "5ae2e3f221c38a28845f05b6fc79de7689f7ec4f4ccd8b2ae7179f74";
 let travelAPIURL = `http://api.opentripmap.com/0.1/en/places/geoname?name=${cityName}&apikey=${cityAPIKey}`;
 
+frontImage.src = "./assets/image/travel.jpg";
 
-currency();
+frontImage.style.width = "100%";
+frontImage.style.height = "100%";
+
+imageDiv.hidden = false;
+hiddenDiv.hidden = true;
+hiddenFoot.hidden = true;
+
 /** Get user's location */
-let userLocation = {};
-console.log(userLocation);
-if (window.navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const { latitude, longitude } = position.coords;
-      userLocation.latitude = latitude;
-      userLocation.longitude = longitude;
-    },
-    (err) => console.log(err)
-  );
-}
+// let userLocation = {};
+// console.log(userLocation);
+// if (window.navigator.geolocation) {
+//   navigator.geolocation.getCurrentPosition(
+//     (position) => {
+//       const { latitude, longitude } = position.coords;
+//       userLocation.latitude = latitude;
+//       userLocation.longitude = longitude;
+//     },
+//     (err) => console.log(err)
+//   );
+// }
 
 /** Fetch Weather data */
 function getWeather(searchCity) {
@@ -71,6 +86,7 @@ function getWeatherData(lat, lon) {
     .then((res) => res.json())
     .then((weatherData) => {
       let weatherInfo = weatherData.list;
+      console.log(weatherData.list.country);
 
       // Display the current weather data on the screen
       currentDateEl.textContent = moment(weatherInfo[0].dt, "X").format(
@@ -114,6 +130,9 @@ function getWeatherData(lat, lon) {
 
 searchBtnEl.addEventListener("click", function (e) {
   e.preventDefault();
+  hiddenDiv.hidden = false;
+  hiddenFoot.hidden = false;
+  imageDiv.hidden = true;
   cityName = e.currentTarget.form[0].value;
   getNewsHeadlines();
   // Save the serached city name to local storage
@@ -125,15 +144,8 @@ searchBtnEl.addEventListener("click", function (e) {
   forecastContainerEl.innerHTML = "";
   getWeather(locationInputEl.value);
 
-countryInfo()
-image()
-travelAPIURL = `http://api.opentripmap.com/0.1/en/places/geoname?name=${cityName}&apikey=${cityAPIKey}`
-getLocationInformation();
-
-});
-
-$(function () {
-  $(".datepicker").datepicker();
+  countryInfo();
+  image();
 });
 
 savedLocationsBtnEl.addEventListener("click", function (e) {
@@ -142,8 +154,12 @@ savedLocationsBtnEl.addEventListener("click", function (e) {
   let storedCities = { ...localStorage };
   console.log(storedCities);
 
-  for (const property of storedCities) {
+  for (const property in storedCities) {
     // Create a btn within the modal display for each location
+    let btnEl = document.createElement("button");
+    btnEl.classList.add("btn", "btn-primary", "modal-location-btn");
+    btnEl.textContent = `${property} - ${storedCities[property]}`;
+    modalContainerEl.appendChild(btnEl);
   }
 });
 
@@ -262,9 +278,9 @@ function currency() {
       }
     });
 }
-   
+
 function getNewsHeadlines() {
-  let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`
+  let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`;
   fetch(newsURL)
   .then((response) => response.json())
   .then((newsData) => {
@@ -292,14 +308,11 @@ function getNewsHeadlines() {
     }
   });
 }
-
-
-
 function getLocationInformation() {
-    fetch(travelAPIURL)
+  fetch(travelAPIURL)
     .then((response) => response.json())
     .then((cityData) => {
-      console.log(cityData)
+      console.log(cityData);
       cityNameField.textContent = cityData.name;
       let population = cityData.population;
       let timezone = cityData.timezone;

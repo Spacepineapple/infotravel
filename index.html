@@ -32,10 +32,11 @@
         <div class="col">
           <nav class="navbar sticky-top bg-light">
             <div class="container-fluid nav-items">
-              <a class="navbar-brand" href="#">
+              <a class="navbar-brand col-1" href="#">
                 Logo
               </a>
-              <form class="d-flex" role="search" id="search-form">
+              <h2 class="col-4">Find the best for your Journey</h2>
+              <form class="d-flex col-4" role="search" id="search-form">
                 <input
                   class="form-control me-2"
                   type="search"
@@ -43,7 +44,7 @@
                   aria-label="Search"
                   id="location"
                 />
-                <input
+                <!-- <input
                   class="form-control me-2 datepicker"
                   type="search"
                   placeholder="From"
@@ -56,7 +57,7 @@
                   placeholder="To"
                   aria-label="Search"
                   id="to-date"
-                />
+                /> -->
                 <button class="btn btn-outline-success" type="submit" id="search-btn">
                   Search
                 </button>
@@ -65,7 +66,10 @@
           </nav>
         </div>
       </header>
-      <div class="row">
+      <div id="image-div">
+        <img id = "front-image">
+      </div>
+      <div id="hidden-div" class="row">
         <div class="col col-4 mt-4">
           <!--weather  -->
           <div class="row">
@@ -156,18 +160,18 @@
                 <div class="col">
                   <input id ="input-money"type="number" class="form-control" placeholder="From">
                   <select id="from-select" class="form-control form-control-sm">
-                    
+
                   </select>
-                  
+
                 </div>
-               
+
                 <div class="col">
                   <input id="total-currency" type="text" class="form-control" placeholder="To">
                   <!-- <h5 id="total-currency"></h5> -->
                   <select id = "to-select"class="form-control form-control-sm">
 
                   </select>
-                  
+
                 </div>
               </div>
               <button class="btn btn-primary mt-3" id="convertBtn" type="button">Convert</button>
@@ -255,7 +259,7 @@
                 Numquam sint, officia provident maxime eum expedita natus illum
                 praesentium quis exercitationem, inventore, ipsa asperiores omnis
                 ratione minus esse voluptates eligendi dignissimos.</p>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn btn-primary">
                   Learn More
                 </button>
               </div>
@@ -270,23 +274,7 @@
               </div>
             </div>
           </div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Learn More</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    To learn more about this location, visit: XXX
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+
           <div class="row">
             <h3>Popular Places to Visit</h4>
               <div class="row attraction">
@@ -396,9 +384,15 @@
               <button class="btn btn-info" type="button" id="saved-locations">Saved Destinations</button>
             </div>
         </div>
+
       </div>
     </div>
+<<<<<<< HEAD
+
       <div class="row">
+=======
+      <div id="hidden-foot" class="row">
+>>>>>>> 7498e81200cbd870f192492e682577279850033c
         <footer class="py-3 my-4">
           <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li class="nav-item">
@@ -416,6 +410,25 @@
           </ul>
           <p class="text-center text-muted">© 2022 Company, Inc</p>
         </footer>
+      </div>
+      <div class="floating">
+        <button class="btn btn-primary floating-btn" id="saved-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Saved Searches</button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Your Previous Searches</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" id="modal-body">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
