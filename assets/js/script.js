@@ -189,6 +189,7 @@ function countryInfo() {
         " (" +
         Object.values(data[0].currencies)[0].symbol +
         ")";
+      currencyPlaceholder .textContent = Object.values(data[0].currencies)[0].name;
       TcurrencyCode.textContent = "Code: " + Object.keys(data[0].currencies)[0];
       Tlanguage.textContent = "Language: " + Object.values(data[0].languages);
       Ttime.textContent = data[0].timezones[0];
