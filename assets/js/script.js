@@ -22,21 +22,34 @@ let newsAPIKey = "pub_165518ddbc391a0563b33c28f98a88bc39c78"
 let cityName = ""
 let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`
 let apiKey = "40640050a45cbd8cf8d35ada1e14fee3";
+let hiddenDiv = document.querySelector("#hidden-div")
+let hiddenFoot = document.querySelector("#hidden-foot")
+let imageDiv = document.querySelector("#image-div")
+let frontImage = document.querySelector("#front-image")
+
+frontImage.src = "./assets/image/travel.jpg"
+frontImage.style.width = "100%"
+frontImage.style.height = "100%"
+imageDiv.hidden = false
+
+
+hiddenDiv.hidden = true
+hiddenFoot.hidden = true
 
 currency();
 /** Get user's location */
-let userLocation = {};
-console.log(userLocation);
-if (window.navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const { latitude, longitude } = position.coords;
-      userLocation.latitude = latitude;
-      userLocation.longitude = longitude;
-    },
-    (err) => console.log(err)
-  );
-}
+// let userLocation = {};
+// console.log(userLocation);
+// if (window.navigator.geolocation) {
+//   navigator.geolocation.getCurrentPosition(
+//     (position) => {
+//       const { latitude, longitude } = position.coords;
+//       userLocation.latitude = latitude;
+//       userLocation.longitude = longitude;
+//     },
+//     (err) => console.log(err)
+//   );
+// }
 
 /** Fetch Weather data */
 function getWeather(searchCity) {
@@ -62,6 +75,7 @@ function getWeatherData(lat, lon) {
     .then((res) => res.json())
     .then((weatherData) => {
       let weatherInfo = weatherData.list;
+      console.log(weatherData.list.country)
 
       // Display the current weather data on the screen
       currentDateEl.textContent = moment(weatherInfo[0].dt, "X").format(
@@ -105,6 +119,9 @@ function getWeatherData(lat, lon) {
 
 searchBtnEl.addEventListener("click", function (e) {
   e.preventDefault();
+  hiddenDiv.hidden = false
+  hiddenFoot.hidden = false
+  imageDiv.hidden = true
   cityName = e.currentTarget.form[0].value;
   getNewsHeadlines();
   // Save the serached city name to local storage
