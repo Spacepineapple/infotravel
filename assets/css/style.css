@@ -2,7 +2,30 @@
 *::after,
 *::before {
   box-sizing: border-box;
+  
+
 }
+
+h2{
+  color: #fca311;
+}
+
+h3{
+  color: #13070c;
+}
+
+h4, h5{
+  color: #888384
+}
+
+button {
+
+  background-color: #fca311 !important;
+  border-color: #b36f10 !important;
+  color: white  !important;
+}
+  
+
 
 img {
   height: 150px;
