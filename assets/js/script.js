@@ -18,7 +18,7 @@ let forecastContainerEl = document.querySelector("#forecast-container");
 let savedLocationsBtnEl = document.querySelector("#saved-btn");
 let convertBtn = document.querySelector("#convertBtn");
 let newsCards = document.querySelectorAll(".news-card");
-let modalContainerEl = document.querySelector("#modal-body");
+let modalContainerEl = document.querySelector("#searched-cities");
 let descriptionPlaceholder = document.querySelector("#city-description");
 let populationPlaceholder = document.querySelector("#population");
 let bestTimePlaceholder = document.querySelector("#best-time");
@@ -138,7 +138,7 @@ searchBtnEl.addEventListener("click", function (e) {
   // Save the serached city name to local storage
   let timeSearched = moment().format("ddd, MMM Do, h:mm A");
   let itemToSaveKey = locationInputEl.value.trim();
-  localStorage.setItem(`${timeSearched}`, JSON.stringify(`${itemToSaveKey}`));
+  localStorage.setItem(`${timeSearched}`, `${itemToSaveKey}`);
 
   currentLocationEl.textContent = "";
   forecastContainerEl.innerHTML = "";
@@ -157,8 +157,8 @@ savedLocationsBtnEl.addEventListener("click", function (e) {
   for (const property in storedCities) {
     // Create a btn within the modal display for each location
     let btnEl = document.createElement("button");
-    btnEl.classList.add("btn", "btn-primary", "modal-location-btn");
-    btnEl.textContent = `${property} - ${storedCities[property]}`;
+    btnEl.classList.add("btn", "btn-primary", "modal-location-btn", "btn-sm");
+    btnEl.textContent = `${storedCities[property]}`;
     modalContainerEl.appendChild(btnEl);
   }
 });
