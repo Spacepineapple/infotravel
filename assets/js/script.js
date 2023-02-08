@@ -86,7 +86,7 @@ function getWeatherData(lat, lon) {
     .then((res) => res.json())
     .then((weatherData) => {
       let weatherInfo = weatherData.list;
-      console.log(weatherData.list.country);
+      // console.log(weatherData.list.country);
 
       // Display the current weather data on the screen
       currentDateEl.textContent = moment(weatherInfo[0].dt, "X").format(
@@ -128,39 +128,54 @@ function getWeatherData(lat, lon) {
     });
 }
 
-searchBtnEl.addEventListener("click", function (e) {
-  e.preventDefault();
+function doSearch(location, e) {
   hiddenDiv.hidden = false;
   hiddenFoot.hidden = false;
   imageDiv.hidden = true;
   cityName = e.currentTarget.form[0].value;
   getNewsHeadlines();
-  // Save the serached city name to local storage
-  let timeSearched = moment().format("ddd, MMM Do, h:mm A");
-  let itemToSaveKey = locationInputEl.value.trim();
-  localStorage.setItem(`${timeSearched}`, `${itemToSaveKey}`);
-
   currentLocationEl.textContent = "";
   forecastContainerEl.innerHTML = "";
-  getWeather(locationInputEl.value);
 
+  // Save the serached city name to local storage
+  let timeSearched = moment().format("ddd, MMM Do, h:mm A");
+  let itemToSaveKey = location;
+  localStorage.setItem(`${itemToSaveKey}`, `${itemToSaveKey}`);
+
+  getWeather(location);
   countryInfo();
   image();
+}
+
+searchBtnEl.addEventListener("click", function (e) {
+  e.preventDefault();
+  doSearch(locationInputEl.value.trim(), e);
 });
 
 savedLocationsBtnEl.addEventListener("click", function (e) {
   e.preventDefault();
 
   let storedCities = { ...localStorage };
-  console.log(storedCities);
-
+  modalContainerEl.innerHTML = "";
   for (const property in storedCities) {
-    // Create a btn within the modal display for each location
-    let btnEl = document.createElement("button");
-    btnEl.classList.add("btn", "btn-primary", "modal-location-btn", "btn-sm");
-    btnEl.textContent = `${storedCities[property]}`;
-    modalContainerEl.appendChild(btnEl);
+    if (!storedCities.property) {
+      // Create a btn within the modal display for each location
+      let btnEl = document.createElement("button");
+      btnEl.classList.add("btn", "btn-primary", "modal-location-btn", "btn-sm");
+      btnEl.setAttribute("data-bs-dismiss", "modal");
+      btnEl.textContent = `${storedCities[property]}`;
+      modalContainerEl.appendChild(btnEl);
+    }
   }
+
+  const searchPreviousCity = (e) => {
+    e.preventDefault();
+    if (e.target.matches(".modal-location-btn")) {
+      doSearch(e.target.textContent, e);
+    }
+  };
+
+  document.addEventListener("click", searchPreviousCity);
 });
 
 function countryInfo() {
