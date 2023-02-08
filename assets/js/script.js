@@ -18,10 +18,19 @@ let forecastContainerEl = document.querySelector("#forecast-container");
 let savedLocationsBtnEl = document.querySelector("#saved-locations");
 let convertBtn = document.querySelector("#convertBtn")
 let newsCards = document.querySelectorAll(".news-card");
+let descriptionPlaceholder = document.querySelector("#city-description");
+let populationPlaceholder = document.querySelector("#population");
+let bestTimePlaceholder = document.querySelector("#best-time");
+let currencyPlaceholder = document.querySelector("#currency");
+let timeZonePlaceholder = document.querySelector("#timezone");
+let cityNameField = document.querySelector("#city-name");
 let newsAPIKey = "pub_165518ddbc391a0563b33c28f98a88bc39c78"
 let cityName = ""
 let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`
 let apiKey = "40640050a45cbd8cf8d35ada1e14fee3";
+let cityAPIKey =  "5ae2e3f221c38a28845f05b6fc79de7689f7ec4f4ccd8b2ae7179f74";
+let travelAPIURL = `http://api.opentripmap.com/0.1/en/places/geoname?name=${cityName}&apikey=${cityAPIKey}`;
+
 
 currency();
 /** Get user's location */
@@ -118,6 +127,9 @@ searchBtnEl.addEventListener("click", function (e) {
 
 countryInfo()
 image()
+travelAPIURL = `http://api.opentripmap.com/0.1/en/places/geoname?name=${cityName}&apikey=${cityAPIKey}`
+getLocationInformation();
+
 });
 
 $(function () {
@@ -274,16 +286,53 @@ function getNewsHeadlines() {
 }
 
 
-let cityAPIKey =  "5ae2e3f221c38a28845f05b6fc79de7689f7ec4f4ccd8b2ae7179f74";
-let apiURL = `http://api.opentripmap.com/0.1/en/places/geoname?name=London&apikey=${cityAPIKey}`;
 
 function getLocationInformation() {
-    fetch(apiURL)
+    fetch(travelAPIURL)
     .then((response) => response.json())
-    .then((cityData) => console.log(cityData))
+    .then((cityData) => {
+      console.log(cityData)
+      cityNameField.textContent = cityData.name;
+      let population = cityData.population;
+      let timezone = cityData.timezone;
+      populationPlaceholder.textContent = `Population: ${population}`;
+      timeZonePlaceholder.textContent = `Timezone: ${timezone}`;
+      let lat = cityData.lat;
+      let lon = cityData.lon;
+      let radiusAPIURL = `https://api.opentripmap.com/0.1/en/places/radius?radius=1000&lon=${lon}&lat=${lat}&apikey=${cityAPIKey}`;
+      fetch(radiusAPIURL)
+      .then((response => response.json()))
+      .then(placeData => {
+        //console.log(placeData)
+        let attractionHeadings = document.querySelectorAll(".attraction-heading");
+        let attractionDescriptions = document.querySelectorAll(".attraction-description");
+        let attractionImages = document.querySelectorAll(".attraction-image");
+        for (let i=0; i<3; i++) {
+          let attractionName = placeData.features[i].properties.name;
+          let popularity = placeData.features[i].properties.rate;
+          attractionHeadings[i].textContent = attractionName;
+          let xid = placeData.features[i].properties.xid;
+          const xidAPIURL = `https://api.opentripmap.com/0.1/en/places/xid/${xid}?apikey=${cityAPIKey}`;
+          fetch(xidAPIURL)
+          .then((response => response.json()))
+          .then(attractionData => {
+            console.log(attractionData);
+            let imageURL = attractionData.preview.source;
+            attractionImages[i].setAttribute("src", `${imageURL}`);
+            try {
+              attractionDescriptions[i].textContent = attractionData.wikipedia_extracts.text.substr(0, 200) + "...";
+            } catch (err) {
+              attractionDescriptions[i].textContent = "No description available for this attraction";
+            }
+          })
+        }
+        
+      }
+        );
+    })
 };
 
-getLocationInformation();
+//getLocationInformation();
 
 $(function () {
   $(".datepicker").datepicker();
