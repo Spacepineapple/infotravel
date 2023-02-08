@@ -15,9 +15,10 @@ let windValueEl = document.querySelector("#wind-value");
 let humidityValueEl = document.querySelector("#humidity-value");
 let visibilityValueEl = document.querySelector("#visibility-value");
 let forecastContainerEl = document.querySelector("#forecast-container");
-let savedLocationsBtnEl = document.querySelector("#saved-locations");
+let savedLocationsBtnEl = document.querySelector("#saved-btn");
 let convertBtn = document.querySelector("#convertBtn");
 let newsCards = document.querySelectorAll(".news-card");
+let modalContainerEl = document.querySelector("#modal-body");
 let descriptionPlaceholder = document.querySelector("#city-description");
 let populationPlaceholder = document.querySelector("#population");
 let bestTimePlaceholder = document.querySelector("#best-time");
@@ -145,12 +146,6 @@ searchBtnEl.addEventListener("click", function (e) {
 
   countryInfo();
   image();
-  travelAPIURL = `http://api.opentripmap.com/0.1/en/places/geoname?name=${cityName}&apikey=${cityAPIKey}`;
-  getLocationInformation();
-});
-
-$(function () {
-  $(".datepicker").datepicker();
 });
 
 savedLocationsBtnEl.addEventListener("click", function (e) {
@@ -159,8 +154,12 @@ savedLocationsBtnEl.addEventListener("click", function (e) {
   let storedCities = { ...localStorage };
   console.log(storedCities);
 
-  for (const property of storedCities) {
+  for (const property in storedCities) {
     // Create a btn within the modal display for each location
+    let btnEl = document.createElement("button");
+    btnEl.classList.add("btn", "btn-primary", "modal-location-btn");
+    btnEl.textContent = `${property} - ${storedCities[property]}`;
+    modalContainerEl.appendChild(btnEl);
   }
 });
 
@@ -306,7 +305,6 @@ function getNewsHeadlines() {
       }
     });
 }
-
 function getLocationInformation() {
   fetch(travelAPIURL)
     .then((response) => response.json())
@@ -356,9 +354,3 @@ function getLocationInformation() {
         });
     });
 }
-
-//getLocationInformation();
-
-$(function () {
-  $(".datepicker").datepicker();
-});

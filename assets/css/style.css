@@ -143,6 +143,21 @@ i {
   font-size: 0.75rem;
 }
 
+<<<<<<< HEAD
+.floating-btn {
+  position: fixed;
+  bottom: 100px;
+  right: calc(100vw - 84vw);
+  background-color: var(--accent-clr);
+  color: var(--dark-clr);
+  font-weight: 500;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.modal-location-btn {
+  margin-bottom: 1rem;
+}
+=======
 .attraction-section {
   margin-left: 1rem;
 }
@@ -150,3 +165,4 @@ i {
 #city-name {
   text-transform: capitalize;
 }
+>>>>>>> 7498e81200cbd870f192492e682577279850033c
