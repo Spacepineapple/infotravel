@@ -37,7 +37,7 @@ let newsAPIKey = "pub_165518ddbc391a0563b33c28f98a88bc39c78";
 let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`;
 let apiKey = "40640050a45cbd8cf8d35ada1e14fee3";
 let cityAPIKey = "5ae2e3f221c38a28845f05b6fc79de7689f7ec4f4ccd8b2ae7179f74";
-let travelAPIURL = `http://api.opentripmap.com/0.1/en/places/geoname?name=${cityName}&apikey=${cityAPIKey}`;
+let travelAPIURL;
 
 frontImage.src = "./assets/image/travel.jpg";
 
@@ -133,6 +133,7 @@ function doSearch(location, e) {
   hiddenFoot.hidden = false;
   imageDiv.hidden = true;
   cityName = e.currentTarget.form[0].value;
+  getLocationInformation();
   getNewsHeadlines();
   currentLocationEl.textContent = "";
   forecastContainerEl.innerHTML = "";
@@ -203,6 +204,7 @@ function countryInfo() {
         " (" +
         Object.values(data[0].currencies)[0].symbol +
         ")";
+      currencyPlaceholder .textContent = Object.values(data[0].currencies)[0].name;
       TcurrencyCode.textContent = "Code: " + Object.keys(data[0].currencies)[0];
       Tlanguage.textContent = "Language: " + Object.values(data[0].languages);
       Ttime.textContent = data[0].timezones[0];
@@ -297,30 +299,34 @@ function currency() {
 function getNewsHeadlines() {
   let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`;
   fetch(newsURL)
-    .then((response) => response.json())
-    .then((newsData) => {
-      console.log(newsData);
-      for (let i = 0; i < 3; i++) {
-        let maxLength = 100;
-        const card = newsCards[i];
-        console.log(card);
-        const title = card
-          .querySelector(".card-body")
-          .querySelector(".card-title");
-        title.textContent = newsData.results[i].title;
-        const newsText = card
-          .querySelector(".card-body")
-          .querySelector(".card-text");
-        newsText.textContent =
-          newsData.results[i].description.substr(0, maxLength) + "...";
-        const newsImage = card.querySelector(".card-img-top");
-        newsImage.setAttribute("src", newsData.results[i].image_url);
-        console.log(newsData.results[i].title);
-        console.log(newsData.results[i].description);
+  .then((response) => response.json())
+  .then((newsData) => {
+    console.log(newsData);
+    for (let i=0; i<3; i++) {
+      let maxLength = 100;
+      const card = newsCards[i];
+      console.log(card);
+      const title = card.querySelector(".card-body").querySelector(".card-title");
+      title.textContent = newsData.results[i].title;
+      const newsText = card.querySelector(".card-body").querySelector(".card-text");
+      if (newsData.results[i].description == null) {
+        newsText.textContent = "No description available. Click to read this article"
+      } else {
+        newsText.textContent = newsData.results[i].description.substr(0, maxLength) + "...";
       }
-    });
+      const newsImage = card.querySelector(".card-img-top");
+      if (newsData.results[i].image_url == null) {
+        newsImage.setAttribute("src", "./assets/image/Newspapers.jpg");
+      } else {
+        newsImage.setAttribute("src", newsData.results[i].image_url);
+      }
+      console.log(newsData.results[i].title);
+      console.log(newsData.results[i].description);
+    }
+  });
 }
 function getLocationInformation() {
+  travelAPIURL = `http://api.opentripmap.com/0.1/en/places/geoname?name=${cityName}&apikey=${cityAPIKey}`;
   fetch(travelAPIURL)
     .then((response) => response.json())
     .then((cityData) => {
@@ -334,38 +340,44 @@ function getLocationInformation() {
       let lon = cityData.lon;
       let radiusAPIURL = `https://api.opentripmap.com/0.1/en/places/radius?radius=1000&lon=${lon}&lat=${lat}&apikey=${cityAPIKey}`;
       fetch(radiusAPIURL)
-        .then((response) => response.json())
-        .then((placeData) => {
-          //console.log(placeData)
-          let attractionHeadings = document.querySelectorAll(
-            ".attraction-heading"
-          );
-          let attractionDescriptions = document.querySelectorAll(
-            ".attraction-description"
-          );
-          let attractionImages = document.querySelectorAll(".attraction-image");
-          for (let i = 0; i < 3; i++) {
-            let attractionName = placeData.features[i].properties.name;
-            let popularity = placeData.features[i].properties.rate;
-            attractionHeadings[i].textContent = attractionName;
-            let xid = placeData.features[i].properties.xid;
-            const xidAPIURL = `https://api.opentripmap.com/0.1/en/places/xid/${xid}?apikey=${cityAPIKey}`;
-            fetch(xidAPIURL)
-              .then((response) => response.json())
-              .then((attractionData) => {
-                console.log(attractionData);
-                let imageURL = attractionData.preview.source;
-                attractionImages[i].setAttribute("src", `${imageURL}`);
-                try {
-                  attractionDescriptions[i].textContent =
-                    attractionData.wikipedia_extracts.text.substr(0, 200) +
-                    "...";
-                } catch (err) {
-                  attractionDescriptions[i].textContent =
-                    "No description available for this attraction";
-                }
-              });
-          }
-        });
-    });
-}
+      .then((response => response.json()))
+      .then(placeData => {
+        //console.log(placeData)
+        let attractionHeadings = document.querySelectorAll(".attraction-heading");
+        let attractionDescriptions = document.querySelectorAll(".attraction-description");
+        let attractionImages = document.querySelectorAll(".attraction-image");
+        for (let i=0; i<6; i++) {
+          let attractionName = placeData.features[i].properties.name;
+          let popularity = placeData.features[i].properties.rate;
+          attractionHeadings[i].textContent = attractionName;
+          let xid = placeData.features[i].properties.xid;
+          const xidAPIURL = `https://api.opentripmap.com/0.1/en/places/xid/${xid}?apikey=${cityAPIKey}`;
+          fetch(xidAPIURL)
+          .then((response => response.json()))
+          .then(attractionData => {
+            console.log(attractionData);
+            let imageURL
+            try {
+              imageURL = attractionData.preview.source;
+            } catch (err) {
+              imageURL = "./assets/image/Placeholder_attraction.jpg";
+            }
+            attractionImages[i].setAttribute("src", `${imageURL}`);  
+            try {
+              attractionDescriptions[i].textContent = attractionData.wikipedia_extracts.text.substr(0, 200) + "...";
+            } catch (err) {
+              attractionDescriptions[i].textContent = "No description available for this attraction";
+            }
+          })
+        }
+        
+      }
+        );
+    })
+};
+
+//getLocationInformation();
+
+$(function () {
+  $(".datepicker").datepicker();
+});
