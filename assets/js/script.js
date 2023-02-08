@@ -299,7 +299,7 @@ function getNewsHeadlines() {
       }
       const newsImage = card.querySelector(".card-img-top");
       if (newsData.results[i].image_url == null) {
-        newsImage.setAttribute("src", "./assets/images/Newspapers.jpg");
+        newsImage.setAttribute("src", "./assets/image/Newspapers.jpg");
       } else {
         newsImage.setAttribute("src", newsData.results[i].image_url);
       }
@@ -342,7 +342,7 @@ function getLocationInformation() {
             try {
               imageURL = attractionData.preview.source;
             } catch (err) {
-              imageURL = "./assets/images/Placeholder_attraction.jpg";
+              imageURL = "./assets/image/Placeholder_attraction.jpg";
             }
             attractionImages[i].setAttribute("src", `${imageURL}`);  
             try {
