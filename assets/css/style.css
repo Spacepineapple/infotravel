@@ -119,3 +119,7 @@ i {
 #city-name {
   text-transform: capitalize;
 }
+
+.attraction {
+  margin-bottom: 0.25rem;
+}

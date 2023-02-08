@@ -276,9 +276,17 @@ function getNewsHeadlines() {
       const title = card.querySelector(".card-body").querySelector(".card-title");
       title.textContent = newsData.results[i].title;
       const newsText = card.querySelector(".card-body").querySelector(".card-text");
-      newsText.textContent = newsData.results[i].description.substr(0, maxLength) + "...";
+      if (newsData.results[i].description == null) {
+        newsText.textContent = "No description available. Click to read this article"
+      } else {
+        newsText.textContent = newsData.results[i].description.substr(0, maxLength) + "...";
+      }
       const newsImage = card.querySelector(".card-img-top");
-      newsImage.setAttribute("src", newsData.results[i].image_url);
+      if (newsData.results[i].image_url == null) {
+        newsImage.setAttribute("src", "./assets/images/Newspapers.jpg");
+      } else {
+        newsImage.setAttribute("src", newsData.results[i].image_url);
+      }
       console.log(newsData.results[i].title);
       console.log(newsData.results[i].description);
     }
@@ -307,7 +315,7 @@ function getLocationInformation() {
         let attractionHeadings = document.querySelectorAll(".attraction-heading");
         let attractionDescriptions = document.querySelectorAll(".attraction-description");
         let attractionImages = document.querySelectorAll(".attraction-image");
-        for (let i=0; i<3; i++) {
+        for (let i=0; i<6; i++) {
           let attractionName = placeData.features[i].properties.name;
           let popularity = placeData.features[i].properties.rate;
           attractionHeadings[i].textContent = attractionName;
@@ -317,8 +325,13 @@ function getLocationInformation() {
           .then((response => response.json()))
           .then(attractionData => {
             console.log(attractionData);
-            let imageURL = attractionData.preview.source;
-            attractionImages[i].setAttribute("src", `${imageURL}`);
+            let imageURL
+            try {
+              imageURL = attractionData.preview.source;
+            } catch (err) {
+              imageURL = "./assets/images/Placeholder_attraction.jpg";
+            }
+            attractionImages[i].setAttribute("src", `${imageURL}`);  
             try {
               attractionDescriptions[i].textContent = attractionData.wikipedia_extracts.text.substr(0, 200) + "...";
             } catch (err) {
