@@ -28,6 +28,10 @@ let hiddenDiv = document.querySelector("#hidden-div");
 let hiddenFoot = document.querySelector("#hidden-foot");
 let imageDiv = document.querySelector("#image-div");
 let frontImage = document.querySelector("#front-image");
+let logoImg = document.querySelector("#logo-img");
+let learnMore = document.querySelector("#learn-more");
+
+logoImg.src = "./assets/image/logo.png";
 
 let cityName = "";
 currency();
@@ -147,6 +151,12 @@ searchBtnEl.addEventListener("click", function (e) {
   doSearch(locationInputEl.value.trim(), e);
 });
 
+learnMore.addEventListener("click", function (event) {
+  let destination = locationInputEl.value;
+  window.open("https://en.wikipedia.org/wiki/" + destination);
+  console.log(destination);
+});
+
 savedLocationsBtnEl.addEventListener("click", function (e) {
   e.preventDefault();
 
@@ -179,7 +189,6 @@ function countryInfo() {
   let Tcurrency = document.querySelector("#Tcurrency");
   let TcurrencyCode = document.querySelector("#TcurrencyCode");
   let Tlanguage = document.querySelector("#Tlanguage");
-  let Ttime = document.querySelector("#Ttime");
   let Tpop = document.querySelector("#Tpop");
   let Tdrive = document.querySelector("#Tdrive");
   let Tcar = document.querySelector("#Tcar");
@@ -197,18 +206,18 @@ function countryInfo() {
         Object.values(data[0].currencies)[0].name +
         " (" +
         Object.values(data[0].currencies)[0].symbol +
+        " " +
+        Object.keys(data[0].currencies)[0] +
         ")";
-      currencyPlaceholder.textContent = Object.values(
-        data[0].currencies
-      )[0].name;
-      TcurrencyCode.textContent = "Code: " + Object.keys(data[0].currencies)[0];
       Tlanguage.textContent = "Language: " + Object.values(data[0].languages);
-      Ttime.textContent = data[0].timezones[0];
       Tpop.textContent =
         "Population: " + data[0].population.toLocaleString("en-UK");
-      Tdrive.textContent = "Car drives on the " + data[0].car.side + " side";
+      Tdrive.textContent =
+        "People drive on the  " + data[0].car.side + " side of the road.";
       Tcar.textContent =
-        "Country code on license plate " + data[0].car.signs[0];
+        "The country code on the license plate is '" +
+        data[0].car.signs[0] +
+        "'";
       Tcontinent.textContent = data[0].region;
       Twebsite.textContent = "Internet code: " + data[0].tld[0];
     });
@@ -334,10 +343,6 @@ function getLocationInformation() {
     .then((cityData) => {
       console.log(cityData);
       cityNameField.textContent = cityData.name;
-      let population = cityData.population;
-      let timezone = cityData.timezone;
-      populationPlaceholder.textContent = `Population: ${population}`;
-      timeZonePlaceholder.textContent = `Timezone: ${timezone}`;
       let lat = cityData.lat;
       let lon = cityData.lon;
       let radiusAPIURL = `https://api.opentripmap.com/0.1/en/places/radius?radius=1000&lon=${lon}&lat=${lat}&apikey=${cityAPIKey}`;
@@ -376,6 +381,7 @@ function getLocationInformation() {
                 } catch (err) {
                   attractionDescriptions[i].textContent =
                     "No description available for this attraction";
+                  console.log(attractionData.address.country);
                 }
               });
           }
