@@ -38,7 +38,8 @@ currency();
 //Create an empty country variable for later use to prevent scope issues
 
 //Define APIs and keys for subsequent use
-let newsAPIKey = "pub_165518ddbc391a0563b33c28f98a88bc39c78";
+// let newsAPIKey = "pub_165518ddbc391a0563b33c28f98a88bc39c78";
+let newsAPIKey = "pub_163846ecaf8c51cdda7961c83e0673682ec1d";
 let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`;
 let apiKey = "40640050a45cbd8cf8d35ada1e14fee3";
 let cityAPIKey = "5ae2e3f221c38a28845f05b6fc79de7689f7ec4f4ccd8b2ae7179f74";
@@ -102,7 +103,6 @@ function getWeatherData(lat, lon) {
         weatherInfo[32],
         weatherInfo[39],
       ];
-      console.log(fiveDayForecastArr);
       fiveDayForecastArr.forEach((forecast) => {
         let day = moment(forecast.dt, "X").format("dddd");
         let forecastWeatherIconSrc = forecast.weather[0].icon;
