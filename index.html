@@ -59,6 +59,7 @@
       <aside class="col col-4 mt-3">
         <!--weather  -->
         <div class="row">
+          <div class="mb-2 text-start aside-title">Weather</div>
           <!-- Current Weather -->
           <div class="weather-header">
             <div class="current-date" id="current-date"></div>
@@ -147,7 +148,7 @@
         </div>
 
         <!--currency  -->
-        <div class="row mt-5 currency-converter">
+        <div class="row mt-4 currency-converter">
           <div class="mb-2 text-start aside-title">Currency Converter</div>
           <form>
             <div class="row">
@@ -164,13 +165,15 @@
                 <input id="total-currency" type="text" class="form-control mb-2 currency-input" readonly>
               </div>
             </div>
-            <button class="btn btn-secondary mt-2" id="convertBtn" type="button">Convert</button>
+            <div class="text-start mb-4">
+              <button class="btn btn-secondary mt-2" id="convertBtn" type="button">Convert</button>
+            </div>
           </form>
         </div>
 
         <!--News feed  -->
-        <div class="row mt-5 news-feed">
-          <h3 class="mb-2 text-start aside-title">News Feed</h3>
+        <div class="row mt-4 news-feed">
+          <div class="mb-2 text-start aside-title">News Feed</div>
           <div class="card mb-3 news-card">
             <img class="card-img-top" src="" alt="News article image">
             <div class="card-body">
@@ -198,6 +201,7 @@
 
       <!--Main-->
       <main class="col col-8 mt-3">
+        <!-- Hero -->
         <div class="row">
           <h2 class="city-name-title" id="city-name">City Name</h2>
           <div class="text-center">
@@ -223,7 +227,7 @@
             </div>
           </div>
           <div class="text-start">
-            <button id="learn-more" type="button" class="btn btn-primary">
+            <button id="learn-more" type="button" class="btn btn-secondary mt-1">
               Learn More
             </button>
           </div>
