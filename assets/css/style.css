@@ -287,7 +287,6 @@ i {
   border-radius: 10px;
   padding: 10px;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
-  margin-bottom: 20px;
   color: var(--light-clr);
 }
 .testimonial-header {
@@ -315,7 +314,7 @@ i {
   font-size: 0.875rem;
   color: var(--dark-gray-clr);
   line-height: 1.2;
-  margin: 15px 0;
+  margin-top: 0.75rem;
   text-align: left;
 }
 
