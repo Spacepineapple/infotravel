@@ -1,6 +1,7 @@
 /* Font imports */
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap");
 
+/* Create variables to hold consistent colour scheme */
 :root {
   /* Colours */
   --light-clr: #fdfffc;
@@ -60,6 +61,7 @@ h2 {
 
 h3 {
   color: #13070c;
+  font-weight: bold;
 }
 
 h4,
@@ -252,12 +254,18 @@ i {
   margin-left: 1rem;
 }
 
+/* Convert city name into title case */
 #city-name {
   text-transform: capitalize;
 }
 
 .attraction {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Resize images but maintain aspect ratio */
+.attraction-image, .news-image {
+  object-fit: cover;
 }
 
 /*Currency Converter*/
@@ -283,11 +291,13 @@ i {
   gap: 0.5rem !important;
 }
 
+
 .news-card img {
   max-width: 100px;
   max-height: 100px;
   object-fit: contain;
 }
+
 
 .news-card .card-title {
   font-size: 0.875rem;
