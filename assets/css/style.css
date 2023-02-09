@@ -14,10 +14,24 @@
   --paragraphs-font-family: "Lato", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--paragraphs-font-family);
   color: var(--dark-clr);
   background: var(--light-clr);
+}
+
+aside,
+main,
+footer {
+  padding: 1.25rem !important;
+}
+
+.container {
+  padding: 1rem;
 }
 
 h2 {
@@ -47,19 +61,48 @@ i {
   height: 24px;
 }
 
-.card {
-  background-color: var(--dark-clr);
-  color: var(--light-clr);
-  box-shadow: var(--dark-clr) 0px 1px 4px;
+.section {
+  margin-top: 2.5rem !important;
+  margin-bottom: 2.5rem !important;
 }
 
-/* button {
-  background-color: var(--accent-clr) !important;
-  border-color: #b36f10 !important;
-  color: white !important;
-} */
+.section-title {
+  font-family: var(--headings-font-family);
+  font-size: 2rem;
+  font-weight: 600;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  text-align: left;
+  color: var(--dark-clr);
+}
+
+.city-name-title {
+  font-family: var(--headings-font-family);
+  font-size: 2rem;
+  font-weight: 600;
+  padding-bottom: 2rem;
+  text-align: left;
+  color: var(--dark-clr);
+}
+
+.card {
+  color: var(--light-clr);
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  margin-bottom: 20px;
+  color: var(--light-clr);
+  border: none !important;
+  color: var(--dark-gray-clr);
+}
 
 .btn-primary {
+  background: var(--accent-clr);
+  border-color: var(--accent-clr) !important;
+}
+
+.btn-primary:hover {
+  background: var(--light-clr);
+  border-color: var(--accent-clr) !important;
+  color: var(--dark-gray-clr);
 }
 
 .btn-secondary:hover {
@@ -76,6 +119,12 @@ i {
   font-weight: 600;
   font-family: var(--headings-font-family);
 }
+
+.current-weather-card {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .current-weather-header {
   display: flex;
   align-items: center;
@@ -106,7 +155,8 @@ i {
 
 .current-temp {
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 600;
+  color: var(--accent-clr);
 }
 
 .weather-right {
@@ -128,10 +178,14 @@ i {
   text-transform: capitalize;
   font-weight: 500;
   font-size: 0.875rem;
+  color: var(--dark-clr);
+  font-weight: 600;
 }
 
 .weather-value {
   line-height: 1rem;
+  font-weight: 600;
+  color: var(--gray-clr);
 }
 
 .value-unit {
@@ -187,7 +241,7 @@ i {
 }
 
 /*Currency Converter*/
-.converter-title {
+.aside-title {
   color: var(--dark-clr);
   font-size: 1.5rem;
   font-family: var(--headings-font-family);
@@ -200,4 +254,73 @@ i {
 .currency-converter label {
   font-size: 1rem;
   font-weight: 600;
+}
+
+/* News Feed */
+.news-card {
+  display: grid !important;
+  grid-template-columns: 1fr 3fr !important;
+  gap: 0.5rem !important;
+}
+
+.news-card img {
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: contain;
+}
+
+.news-card .card-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: var(--headings-font-family);
+  color: var(--dark-clr);
+}
+
+/* Testimonials */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.testimonial-card {
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  margin-bottom: 20px;
+  color: var(--light-clr);
+}
+.testimonial-header {
+  display: flex;
+  align-items: center;
+}
+
+.testimonial-header h3 {
+  color: var(--accent-clr);
+  font-size: 1rem;
+  font-family: var(--headings-font-family);
+  text-align: left;
+}
+
+.testimonial-img {
+  max-width: 50px;
+  max-height: 50px;
+  border: 3px solid var(--accent-clr);
+  font-weight: 500;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.testimonial-body {
+  font-size: 0.875rem;
+  color: var(--dark-gray-clr);
+  line-height: 1.2;
+  margin: 15px 0;
+  text-align: left;
+}
+
+/* Call to Action */
+.cta-text {
+  font-size: 1.25rem !important;
+  text-align: left !important;
 }
