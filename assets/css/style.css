@@ -23,6 +23,7 @@ body {
   font-family: var(--paragraphs-font-family);
   color: var(--dark-clr);
   background: var(--light-clr);
+  padding-top: 2rem;
 }
 
 aside,
@@ -264,7 +265,8 @@ i {
 }
 
 /* Resize images but maintain aspect ratio */
-.attraction-image, .news-image {
+.attraction-image,
+.news-image {
   object-fit: cover;
 }
 
@@ -291,13 +293,11 @@ i {
   gap: 0.5rem !important;
 }
 
-
 .news-card img {
   max-width: 100px;
   max-height: 100px;
   object-fit: contain;
 }
-
 
 .news-card .card-title {
   font-size: 0.875rem;
