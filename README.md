@@ -1,4 +1,4 @@
-# daily-information-project
+# Travel Information Finder
 
 ## Table of Contents
 1. [URL](#url)
@@ -9,7 +9,40 @@
 
 ## URL <a id="url"></a>
 
+A live version of this page has been deployed at 
+
 ## Description <a id="description"></a>
+
+This page was created as our submission for the first group project of a Web
+Development bootcamp. For this project, we were asked to design and implement
+a solution to a real-world problem by creating a web page that integrates data
+received from multiple server-side API requests. There was no user story and
+limited acceptance criteria for this particular task. 
+
+As a result, we decided to create a page that would allow a user to plan a trip
+to a city while giving them all of the information they might require to assist
+them in their planning. In particular, our solution provides a list of nearby
+sight-seeing attractions, currency conversion information, relevant news
+headlines for the location and weather information. Additionally, the page
+allows users to view their previous search history and repeat previously
+performed searches, while receiving new information from the queried APIs.
+
+For this particular task, there were a number of conditions by which our page
+would be assessed. The page needed to:
+
+1. Use Bootstrap or another css framework
+2. Be be deployed to GitHub Pages
+3. Be interactive and to accept and respond to user input
+4. Use at least two server-side APIs
+5. Use modals rather than alerts, confirms, or prompts
+6. Use client-side storage to store persistent data
+7. Be responsive
+8. Have a polished UI
+9. Have a clean repository that meets quality coding standards 
+10. Have a quality README
+
+Additionally, a key part of this project task was to ensure that we understood
+and were able to successfully navigate Git, GitHub and concepts such as branching.
 
 ## Installation <a id="installation"></a>
 
