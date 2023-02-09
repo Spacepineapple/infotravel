@@ -33,12 +33,6 @@ h5 {
   color: #888384;
 }
 
-button {
-  background-color: var(--accent-clr) !important;
-  border-color: #b36f10 !important;
-  color: white !important;
-}
-
 img {
   height: 150px;
   width: 150px;
@@ -57,6 +51,20 @@ i {
   background-color: var(--dark-clr);
   color: var(--light-clr);
   box-shadow: var(--dark-clr) 0px 1px 4px;
+}
+
+/* button {
+  background-color: var(--accent-clr) !important;
+  border-color: #b36f10 !important;
+  color: white !important;
+} */
+
+.btn-primary {
+}
+
+.btn-secondary:hover {
+  background: var(--light-clr);
+  color: var(--dark-clr);
 }
 
 /* Current Weather Styles */
@@ -176,4 +184,20 @@ i {
 
 .attraction {
   margin-bottom: 0.25rem;
+}
+
+/*Currency Converter*/
+.converter-title {
+  color: var(--dark-clr);
+  font-size: 1.5rem;
+  font-family: var(--headings-font-family);
+}
+
+.currency-input {
+  border-color: var(--dark-gray-clr) !important;
+}
+
+.currency-converter label {
+  font-size: 1rem;
+  font-weight: 600;
 }

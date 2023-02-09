@@ -67,7 +67,7 @@
         <img id = "front-image">
       </div>
       <div id="hidden-div" class="row">
-        <div class="col col-4 mt-4">
+        <div class="col col-4 mt-5">
           <!--weather  -->
           <div class="row">
             <!-- Current Weather -->
@@ -76,7 +76,7 @@
               <div class="weather-description" id="weather-description"></div>
             </div>
             <div>
-              <div class="card mt-2 current-weather-card">
+              <div class="card mt-1 current-weather-card">
                 <div class="container current-weather-header">
                   <div class="weather-left">
                     <img class="weather-icon-large" src="http://openweathermap.org/img/wn/10d@2x.png" alt="Weather Icon" id="current-weather-icon">
@@ -149,33 +149,28 @@
           </div>
 
           <!--currency  -->
-          <div class="row mt-5 mb-5">
-            <h5 class="mb-3">Currency Converter</h5>
+          <div class="row mt-5 currency-converter">
+            <h3 class="mb-2 text-start converter-title">Currency Converter</h3>
             <form>
               <div class="row">
                 <div class="col">
-                  <input id ="input-money"type="number" class="form-control" placeholder="From">
-                  <select id="from-select" class="form-control form-control-sm">
-
+                  <label for="input-money" class="form-label text-start">From</label>
+                  <select id="from-select" class="form-control form-control-sm mb-2 currency-input" placeholder="From">
                   </select>
-
+                  <input id ="input-money" type="number" class="form-control currency-input" placeholder="Amount">
                 </div>
-
                 <div class="col">
-                  <input id="total-currency" type="text" class="form-control" placeholder="To">
-                  <!-- <h5 id="total-currency"></h5> -->
-                  <select id = "to-select"class="form-control form-control-sm">
-
+                  <label for="total-currency" class="form-label text-start">To</label>
+                  <select id = "to-select"class="form-control form-control-sm mb-2 currency-input">
                   </select>
-
+                  <input id="total-currency" type="text" class="form-control mb-2 currency-input" readonly>
                 </div>
               </div>
-              <button class="btn btn-primary mt-3" id="convertBtn" type="button">Convert</button>
+              <button class="btn btn-secondary mt-2" id="convertBtn" type="button">Convert</button>
             </form>
           </div>
 
           <!--Travel info  -->
-
           <div class="container mt-5 pb-5">
             <h5 class="mt-5 pt-5">Country Information</h5>
             <div class="row mt-3">
@@ -244,7 +239,7 @@
 
           </div>
         </div>
-        <div class="col col-8"><!--Main-->
+        <div class="col col-8 mt-5"><!--Main-->
           <div class="row">
             <h3 id="city-name">City Name</h3>
             <div class="gap-2 d-flex justify-content-center">
