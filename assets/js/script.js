@@ -29,6 +29,9 @@ let hiddenDiv = document.querySelector("#hidden-div");
 let hiddenFoot = document.querySelector("#hidden-foot");
 let imageDiv = document.querySelector("#image-div");
 let frontImage = document.querySelector("#front-image");
+let logoImg = document.querySelector("#logo-img")
+
+logoImg.src = "./assets/image/logo.png"
 
 let cityName = "";
 currency();

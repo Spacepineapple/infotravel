@@ -11,6 +11,19 @@
 *::before {
   box-sizing: border-box;
 }
+#logo-div{
+  background-color: white ;
+}
+
+#nav-bar{
+
+  background-color: white !important;
+}
+#logo-img {
+
+  width: 100%;
+  height: 50px;
+}
 
 h2 {
   color: #fca311;
