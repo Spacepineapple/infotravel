@@ -21,9 +21,6 @@ let newsCards = document.querySelectorAll(".news-card");
 let modalContainerEl = document.querySelector("#searched-cities");
 let descriptionPlaceholder = document.querySelector("#city-description");
 let populationPlaceholder = document.querySelector("#population");
-let bestTimePlaceholder = document.querySelector("#best-time");
-let currencyPlaceholder = document.querySelector("#currency");
-let timeZonePlaceholder = document.querySelector("#timezone");
 let cityNameField = document.querySelector("#city-name");
 let hiddenDiv = document.querySelector("#hidden-div");
 let hiddenFoot = document.querySelector("#hidden-foot");
@@ -332,10 +329,15 @@ function getLocationInformation() {
     .then((cityData) => {
       console.log(cityData);
       cityNameField.textContent = cityData.name;
-      let population = cityData.population;
-      let timezone = cityData.timezone;
-      populationPlaceholder.textContent = `Population: ${population}`;
-      timeZonePlaceholder.textContent = `Timezone: ${timezone}`;
+      let countryCode = cityData.country;
+      let countryNameURL = `https://restcountries.com/v3.1/alpha/${countryCode}`
+      let country;
+      fetch(countryNameURL)
+      .then(response => response.json())
+      .then(countryData => {
+        country = countryData[0].name.common;
+        console.log(countryData);
+      })
       let lat = cityData.lat;
       let lon = cityData.lon;
       let radiusAPIURL = `https://api.opentripmap.com/0.1/en/places/radius?radius=1000&lon=${lon}&lat=${lat}&apikey=${cityAPIKey}`;
