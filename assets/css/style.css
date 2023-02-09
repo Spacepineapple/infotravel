@@ -1,3 +1,4 @@
+/* Create variables to hold consistent colour scheme */
 :root {
   --light-clr: #fdfffc;
   --dark-clr: #13070c;
@@ -157,6 +158,7 @@ i {
   margin-left: 1rem;
 }
 
+/* Convert city name into title case */
 #city-name {
   text-transform: capitalize;
 }
@@ -165,6 +167,7 @@ i {
   margin-bottom: 0.5rem;
 }
 
+/* Resize images but maintain aspect ratio */
 .attration-image, .news-image {
   object-fit: contain;
 }
