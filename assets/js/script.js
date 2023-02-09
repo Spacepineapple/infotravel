@@ -1,3 +1,4 @@
+//Create variables for each of the manipulated DOM elements
 let formContainer = document.querySelector("#search-form");
 let locationInputEl = document.querySelector("#location");
 let fromDateInputEl = document.querySelector("#from-date");
@@ -27,13 +28,16 @@ let hiddenFoot = document.querySelector("#hidden-foot");
 let imageDiv = document.querySelector("#image-div");
 let frontImage = document.querySelector("#front-image");
 
+//Create an empty city name variable for later use to prevent scope issues
 let cityName = "";
 currency();
 
+//Define APIs and keys for subsequent use
 let newsAPIKey = "pub_165518ddbc391a0563b33c28f98a88bc39c78";
 let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`;
 let apiKey = "40640050a45cbd8cf8d35ada1e14fee3";
 let cityAPIKey = "5ae2e3f221c38a28845f05b6fc79de7689f7ec4f4ccd8b2ae7179f74";
+//Create an empty travelAPIURL for later use to prevent scope issues
 let travelAPIURL;
 
 frontImage.src = "./assets/image/travel.jpg";
@@ -67,9 +71,9 @@ function getWeather(searchCity) {
     .then((res) => res.json())
     .then((data) => {
       let cityData = data[0];
-
+      //Set the current location to the city name
       currentLocationEl.textContent = cityData.name;
-
+      //Get the weather data for the city latitude and longitude
       let cityLon = cityData.lon;
       let cityLat = cityData.lat;
       getWeatherData(cityLat, cityLon);
@@ -125,12 +129,15 @@ function getWeatherData(lat, lon) {
     });
 }
 
+//Search for a city matching the user's input
 function doSearch(location, e) {
   hiddenDiv.hidden = false;
   hiddenFoot.hidden = false;
   imageDiv.hidden = true;
   cityName = e.currentTarget.form[0].value;
+  //Get the attractions and information for that city
   getLocationInformation();
+  //Get relevant news headlines for that city
   getNewsHeadlines();
   currentLocationEl.textContent = "";
   forecastContainerEl.innerHTML = "";
@@ -139,23 +146,30 @@ function doSearch(location, e) {
   let timeSearched = moment().format("ddd, MMM Do, h:mm A");
   let itemToSaveKey = location;
   localStorage.setItem(`${itemToSaveKey}`, `${itemToSaveKey}`);
-
+  //Get the weather at the location
   getWeather(location);
+  //Get country information for the location
   countryInfo();
+  //Get an image for the location
   image();
 }
 
+//Add functionality to the search button
 searchBtnEl.addEventListener("click", function (e) {
   e.preventDefault();
   doSearch(locationInputEl.value.trim(), e);
 });
 
+//Add functionality to the saved locations button
 savedLocationsBtnEl.addEventListener("click", function (e) {
   e.preventDefault();
-
+  //Get data from local storage
   let storedCities = { ...localStorage };
+  //Set the modal content to be empty to prevent repetition of elements
   modalContainerEl.innerHTML = "";
+  //Iterate through locations stored in local storage
   for (const property in storedCities) {
+    //If the stored city does not already exist
     if (!storedCities.property) {
       // Create a btn within the modal display for each location
       let btnEl = document.createElement("button");
@@ -165,18 +179,20 @@ savedLocationsBtnEl.addEventListener("click", function (e) {
       modalContainerEl.appendChild(btnEl);
     }
   }
-
+  //If the user clicks a button, perform a search for the corresponding location
   const searchPreviousCity = (e) => {
     e.preventDefault();
     if (e.target.matches(".modal-location-btn")) {
       doSearch(e.target.textContent, e);
     }
   };
-
+  //Add click functionality to the modal
   document.addEventListener("click", searchPreviousCity);
 });
 
+//Get information about the queried country
 function countryInfo() {
+  //Create variables with assigned data for each of the placeholder elements
   let Tcountry = document.querySelector("#Tcountry");
   let Tcapital = document.querySelector("#Tcapital");
   let Tcurrency = document.querySelector("#Tcurrency");
@@ -190,6 +206,7 @@ function countryInfo() {
   let Twebsite = document.querySelector("#Twebsite");
   let country = locationInputEl.value;
 
+  //Query the API for details on the country
   fetch("https://restcountries.com/v3.1/name/" + country)
     .then((response) => response.json())
     .then((data) => {
@@ -215,6 +232,7 @@ function countryInfo() {
     });
 }
 
+//Get an image that corresponds to the searched location
 function image() {
   let Icountry = locationInputEl.value;
 
@@ -232,6 +250,7 @@ function image() {
         let imageCountry = document.querySelector("#image1");
         imageCountry.src = data.hits[0].largeImageURL;
       } else {
+        //If the image is not suitable search the places API
         fetch(
           "https://pixabay.com/api/?key=33442906-03cc2a6146a25307dc8dd0c8d&q=" +
             Icountry +
@@ -248,6 +267,7 @@ function image() {
     });
 }
 
+//Add functionality to the currency conversion button
 convertBtn.addEventListener("click", function (event) {
   event.preventDefault();
 
@@ -256,11 +276,13 @@ convertBtn.addEventListener("click", function (event) {
   )
     .then((response) => response.json())
     .then((data) => {
+      //Create variables to refer to elements in currency conversion fields
       let inputMoneyFrom = document.querySelector("#input-money").value;
       let fromSelect = document.querySelector("#from-select");
       let totalCurrency = document.querySelector("#total-currency");
       let fromCurrency = fromSelect.value;
       let toSelect = document.querySelector("#to-select");
+      //Gather data from API and calculate converted value
       let toCurrency = toSelect.value;
       let from = data.rates[fromCurrency];
       let to = data.rates[toCurrency];
@@ -271,6 +293,7 @@ convertBtn.addEventListener("click", function (event) {
     });
 });
 
+//Fetch currency exchance rates for User's selected currencies
 function currency() {
   fetch(
     "https://openexchangerates.org/api/latest.json?app_id=4e8c4a0043c244ccaf102892798ae1c7"
