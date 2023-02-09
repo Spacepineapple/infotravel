@@ -4,7 +4,6 @@ let locationInputEl = document.querySelector("#location");
 let fromDateInputEl = document.querySelector("#from-date");
 let toDateInputEl = document.querySelector("#to-date");
 let searchBtnEl = document.querySelector("#search-btn");
-let currentLocationEl = document.querySelector("#current-location");
 let currentDateEl = document.querySelector("#current-date");
 let weatherDescriptionEl = document.querySelector("#weather-description");
 let currentWeatherIconEl = document.querySelector("#current-weather-icon");
@@ -28,6 +27,10 @@ let hiddenFoot = document.querySelector("#hidden-foot");
 let imageDiv = document.querySelector("#image-div");
 let frontImage = document.querySelector("#front-image");
 let country;
+let logoImg = document.querySelector("#logo-img");
+let learnMore = document.querySelector("#learn-more");
+
+logoImg.src = "./assets/image/logo.png";
 
 //Create an empty city name variable for later use to prevent scope issues
 let cityName = "";
@@ -73,8 +76,6 @@ function getWeather(searchCity) {
     .then((res) => res.json())
     .then((data) => {
       let cityData = data[0];
-      //Set the current location to the city name
-      currentLocationEl.textContent = cityData.name;
       //Get the weather data for the city latitude and longitude
       let cityLon = cityData.lon;
       let cityLat = cityData.lat;
@@ -89,7 +90,6 @@ function getWeatherData(lat, lon) {
     .then((res) => res.json())
     .then((weatherData) => {
       let weatherInfo = weatherData.list;
-      // console.log(weatherData.list.country);
 
       // Display the current weather data on the screen
       currentDateEl.textContent = moment(weatherInfo[0].dt, "X").format(
@@ -116,6 +116,7 @@ function getWeatherData(lat, lon) {
         weatherInfo[32],
         weatherInfo[39],
       ];
+      console.log(fiveDayForecastArr);
       fiveDayForecastArr.forEach((forecast) => {
         let day = moment(forecast.dt, "X").format("dddd");
         let forecastWeatherIconSrc = forecast.weather[0].icon;
@@ -141,7 +142,7 @@ function doSearch(location, e) {
   getLocationInformation();
   //Get relevant news headlines for that city
   getNewsHeadlines();
-  currentLocationEl.textContent = "";
+  // currentLocationEl.textContent = "";
   forecastContainerEl.innerHTML = "";
 
   // Save the serached city name to local storage
@@ -157,6 +158,14 @@ searchBtnEl.addEventListener("click", function (e) {
   e.preventDefault();
   doSearch(locationInputEl.value.trim(), e);
 });
+
+//Add functionality to the learn more button to move to Wikipedia page
+learnMore.addEventListener("click", function (event) {
+  let destination = locationInputEl.value;
+  window.open("https://en.wikipedia.org/wiki/" + destination);
+  console.log(destination);
+});
+
 
 //Add functionality to the saved locations button
 savedLocationsBtnEl.addEventListener("click", function (e) {
@@ -196,7 +205,6 @@ function countryInfo() {
   let Tcurrency = document.querySelector("#Tcurrency");
   let TcurrencyCode = document.querySelector("#TcurrencyCode");
   let Tlanguage = document.querySelector("#Tlanguage");
-  let Ttime = document.querySelector("#Ttime");
   let Tpop = document.querySelector("#Tpop");
   let Tdrive = document.querySelector("#Tdrive");
   let Tcar = document.querySelector("#Tcar");
@@ -215,15 +223,18 @@ function countryInfo() {
         Object.values(data[0].currencies)[0].name +
         " (" +
         Object.values(data[0].currencies)[0].symbol +
+        " " +
+        Object.keys(data[0].currencies)[0] +
         ")";
-      TcurrencyCode.textContent = "Code: " + Object.keys(data[0].currencies)[0];
       Tlanguage.textContent = "Language: " + Object.values(data[0].languages);
-      Ttime.textContent = data[0].timezones[0];
       Tpop.textContent =
         "Population: " + data[0].population.toLocaleString("en-UK");
-      Tdrive.textContent = "Car drives on the " + data[0].car.side + " side";
+      Tdrive.textContent =
+        "People drive on the  " + data[0].car.side + " side of the road.";
       Tcar.textContent =
-        "Country code on license plate " + data[0].car.signs[0];
+        "The country code on the license plate is '" +
+        data[0].car.signs[0] +
+        "'";
       Tcontinent.textContent = data[0].region;
       Twebsite.textContent = "Internet code: " + data[0].tld[0];
     });
@@ -347,10 +358,8 @@ function getNewsHeadlines() {
         //Otherwise, display the image from the article
         newsImage.setAttribute("src", newsData.results[i].image_url);
       }
-      console.log(newsData.results[i].title);
-      console.log(newsData.results[i].description);
-    }
-  });
+      }
+    });
 }
 
 
