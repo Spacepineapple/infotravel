@@ -54,20 +54,6 @@ imageDiv.hidden = false;
 hiddenDiv.hidden = true;
 hiddenFoot.hidden = true;
 
-/** Get user's location */
-// let userLocation = {};
-// console.log(userLocation);
-// if (window.navigator.geolocation) {
-//   navigator.geolocation.getCurrentPosition(
-//     (position) => {
-//       const { latitude, longitude } = position.coords;
-//       userLocation.latitude = latitude;
-//       userLocation.longitude = longitude;
-//     },
-//     (err) => console.log(err)
-//   );
-// }
-
 /** Fetch Weather data */
 function getWeather(searchCity) {
   let queryUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${searchCity}&limit=5&appid=${apiKey}`;
@@ -137,7 +123,8 @@ function doSearch(location, e) {
   hiddenDiv.hidden = false;
   hiddenFoot.hidden = false;
   imageDiv.hidden = true;
-  cityName = e.currentTarget.form[0].value;
+  // cityName = e.currentTarget.form[0].value;
+  cityName = location;
   //Get the attractions and information for that city
   getLocationInformation();
   //Get relevant news headlines for that city
@@ -157,6 +144,7 @@ function doSearch(location, e) {
 searchBtnEl.addEventListener("click", function (e) {
   e.preventDefault();
   doSearch(locationInputEl.value.trim(), e);
+  locationInputEl.value = "";
 });
 
 //Add functionality to the learn more button to move to Wikipedia page
@@ -165,7 +153,6 @@ learnMore.addEventListener("click", function (event) {
   window.open("https://en.wikipedia.org/wiki/" + destination);
   console.log(destination);
 });
-
 
 //Add functionality to the saved locations button
 savedLocationsBtnEl.addEventListener("click", function (e) {
@@ -186,16 +173,17 @@ savedLocationsBtnEl.addEventListener("click", function (e) {
       modalContainerEl.appendChild(btnEl);
     }
   }
-  //If the user clicks a button, perform a search for the corresponding location
-  const searchPreviousCity = (e) => {
-    e.preventDefault();
-    if (e.target.matches(".modal-location-btn")) {
-      doSearch(e.target.textContent, e);
-    }
-  };
-  //Add click functionality to the modal
-  document.addEventListener("click", searchPreviousCity);
 });
+
+//If the user clicks a button, perform a search for the corresponding location
+const searchPreviousCity = (e) => {
+  e.preventDefault();
+  if (e.target.matches(".modal-location-btn")) {
+    doSearch(e.target.textContent, e);
+  }
+};
+//Add click functionality to the modal
+document.addEventListener("click", searchPreviousCity);
 
 //Get information about the queried country
 function countryInfo() {
@@ -210,7 +198,6 @@ function countryInfo() {
   let Tcar = document.querySelector("#Tcar");
   let Tcontinent = document.querySelector("#Tcontinent");
   let Twebsite = document.querySelector("#Twebsite");
-  
 
   //Query the API for details on the country
   fetch("https://restcountries.com/v3.1/name/" + country)
@@ -242,7 +229,6 @@ function countryInfo() {
 
 //Get an image that corresponds to the searched location
 function image() {
-  
   fetch(
     "https://pixabay.com/api/?key=33442906-03cc2a6146a25307dc8dd0c8d&q=" +
       country +
@@ -264,15 +250,14 @@ function image() {
             "&image_type=photo&category=" +
             "places"
         )
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          let imageCountry = document.querySelector("#image1");
-          imageCountry.src = data.hits[0].largeImageURL;
-        });
-    
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            let imageCountry = document.querySelector("#image1");
+            imageCountry.src = data.hits[0].largeImageURL;
+          });
       }
-    })
+    });
 }
 
 //Add functionality to the currency conversion button
@@ -330,38 +315,43 @@ function getNewsHeadlines() {
   let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`;
   //Get data from API and convert to JSON
   fetch(newsURL)
-  .then((response) => response.json())
-  .then((newsData) => {
-    console.log(newsData);
-    //Take the first 3 articles
-    for (let i=0; i<3; i++) {
-      let maxLength = 100;
-      //Get the corresponding card from the newsfeed
-      const card = newsCards[i];
-      console.log(card);
-      const title = card.querySelector(".card-body").querySelector(".card-title");
-      //Set the card title to the news headline
-      title.textContent = newsData.results[i].title;
-      const newsText = card.querySelector(".card-body").querySelector(".card-text");
-      //If there is no description, display placeholder text
-      if (newsData.results[i].description == null) {
-        newsText.textContent = "No description available. Click to read this article"
-      } else {
-        //Otherwise, display the description but limit it to 100 characters
-        newsText.textContent = newsData.results[i].description.substr(0, maxLength) + "...";
-      }
-      const newsImage = card.querySelector(".card-img-top");
-      //If there is no image, display a placeholder image
-      if (newsData.results[i].image_url == null) {
-        newsImage.setAttribute("src", "./assets/image/Newspapers.jpg");
-      } else {
-        //Otherwise, display the image from the article
-        newsImage.setAttribute("src", newsData.results[i].image_url);
-      }
+    .then((response) => response.json())
+    .then((newsData) => {
+      console.log(newsData);
+      //Take the first 3 articles
+      for (let i = 0; i < 3; i++) {
+        let maxLength = 100;
+        //Get the corresponding card from the newsfeed
+        const card = newsCards[i];
+        console.log(card);
+        const title = card
+          .querySelector(".card-body")
+          .querySelector(".card-title");
+        //Set the card title to the news headline
+        title.textContent = newsData.results[i].title;
+        const newsText = card
+          .querySelector(".card-body")
+          .querySelector(".card-text");
+        //If there is no description, display placeholder text
+        if (newsData.results[i].description == null) {
+          newsText.textContent =
+            "No description available. Click to read this article";
+        } else {
+          //Otherwise, display the description but limit it to 100 characters
+          newsText.textContent =
+            newsData.results[i].description.substr(0, maxLength) + "...";
+        }
+        const newsImage = card.querySelector(".card-img-top");
+        //If there is no image, display a placeholder image
+        if (newsData.results[i].image_url == null) {
+          newsImage.setAttribute("src", "./assets/image/Newspapers.jpg");
+        } else {
+          //Otherwise, display the image from the article
+          newsImage.setAttribute("src", newsData.results[i].image_url);
+        }
       }
     });
 }
-
 
 function getLocationInformation() {
   //Populate the API URL with the user's input city name and API key
@@ -375,17 +365,17 @@ function getLocationInformation() {
       //Get the country code from the response
       let countryCode = cityData.country;
       //Use the country code to get the commonly used name for that country
-      let countryNameURL = `https://restcountries.com/v3.1/alpha/${countryCode}`
+      let countryNameURL = `https://restcountries.com/v3.1/alpha/${countryCode}`;
       fetch(countryNameURL)
-      .then(response => response.json())
-      .then(countryData => {
-        country = countryData[0].name.common;
-        console.log(countryData);
-        //Get country information for the location
-        countryInfo();
-        //Get an image for the location
-        image();
-      })
+        .then((response) => response.json())
+        .then((countryData) => {
+          country = countryData[0].name.common;
+          console.log(countryData);
+          //Get country information for the location
+          countryInfo();
+          //Get an image for the location
+          image();
+        });
       //Get the latitude of the city
       let lat = cityData.lat;
       //Get the longitude of the city
@@ -393,48 +383,52 @@ function getLocationInformation() {
       //Use the latitude and longitude to find attractions in a 1000m radius
       let radiusAPIURL = `https://api.opentripmap.com/0.1/en/places/radius?radius=1000&lon=${lon}&lat=${lat}&apikey=${cityAPIKey}`;
       fetch(radiusAPIURL)
-      .then((response => response.json()))
-      .then(placeData => {
-        let attractionHeadings = document.querySelectorAll(".attraction-heading");
-        let attractionDescriptions = document.querySelectorAll(".attraction-description");
-        let attractionImages = document.querySelectorAll(".attraction-image");
-        //Get the first 6 results
-        for (let i=0; i<6; i++) {
-          //Get the name of the attraction
-          let attractionName = placeData.features[i].properties.name;
-          //Set the heading of the attraction area row in index.html to the name
-          attractionHeadings[i].textContent = attractionName;
-          //Get the Open Trip Map ID of the attraction
-          let xid = placeData.features[i].properties.xid;
-          //Query the API using this ID to get further data
-          const xidAPIURL = `https://api.opentripmap.com/0.1/en/places/xid/${xid}?apikey=${cityAPIKey}`;
-          fetch(xidAPIURL)
-          .then((response => response.json()))
-          .then(attractionData => {
-            console.log(attractionData);
-            //Create a variable to hold the image URL
-            let imageURL
-            //Attempt to get the attraction image URL
-            try {
-              imageURL = attractionData.preview.source;
-            } catch (err) {
-              //If there is an error, instead use a placeholder image
-              imageURL = "./assets/image/Placeholder_attraction.jpg";
-            }
-            //Change the attraction image to match the image URL
-            attractionImages[i].setAttribute("src", `${imageURL}`);  
-            //Attempt to get the attraction description, limited to 200 characters
-            try {
-              attractionDescriptions[i].textContent = attractionData.wikipedia_extracts.text.substr(0, 200) + "...";
-            } catch (err) {
-              //If there is an error, instead display placeholder text
-              attractionDescriptions[i].textContent = "No description available for this attraction";
-            }
-          })
-        }
-        
-      }
-        );
-    })
-};
-
+        .then((response) => response.json())
+        .then((placeData) => {
+          let attractionHeadings = document.querySelectorAll(
+            ".attraction-heading"
+          );
+          let attractionDescriptions = document.querySelectorAll(
+            ".attraction-description"
+          );
+          let attractionImages = document.querySelectorAll(".attraction-image");
+          //Get the first 6 results
+          for (let i = 0; i < 6; i++) {
+            //Get the name of the attraction
+            let attractionName = placeData.features[i].properties.name;
+            //Set the heading of the attraction area row in index.html to the name
+            attractionHeadings[i].textContent = attractionName;
+            //Get the Open Trip Map ID of the attraction
+            let xid = placeData.features[i].properties.xid;
+            //Query the API using this ID to get further data
+            const xidAPIURL = `https://api.opentripmap.com/0.1/en/places/xid/${xid}?apikey=${cityAPIKey}`;
+            fetch(xidAPIURL)
+              .then((response) => response.json())
+              .then((attractionData) => {
+                console.log(attractionData);
+                //Create a variable to hold the image URL
+                let imageURL;
+                //Attempt to get the attraction image URL
+                try {
+                  imageURL = attractionData.preview.source;
+                } catch (err) {
+                  //If there is an error, instead use a placeholder image
+                  imageURL = "./assets/image/Placeholder_attraction.jpg";
+                }
+                //Change the attraction image to match the image URL
+                attractionImages[i].setAttribute("src", `${imageURL}`);
+                //Attempt to get the attraction description, limited to 200 characters
+                try {
+                  attractionDescriptions[i].textContent =
+                    attractionData.wikipedia_extracts.text.substr(0, 200) +
+                    "...";
+                } catch (err) {
+                  //If there is an error, instead display placeholder text
+                  attractionDescriptions[i].textContent =
+                    "No description available for this attraction";
+                }
+              });
+          }
+        });
+    });
+}
