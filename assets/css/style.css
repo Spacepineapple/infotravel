@@ -64,6 +64,9 @@ i {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: var(--headings-font-family);
 }
 .current-weather-header {
   display: flex;
@@ -116,7 +119,7 @@ i {
 .label {
   text-transform: capitalize;
   font-weight: 500;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
 }
 
 .weather-value {

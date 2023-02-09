@@ -69,6 +69,7 @@ function getWeather(searchCity) {
     .then((res) => res.json())
     .then((data) => {
       let cityData = data[0];
+      console.log(cityData);
       let cityLon = cityData.lon;
       let cityLat = cityData.lat;
       getWeatherData(cityLat, cityLon);
@@ -130,7 +131,7 @@ function doSearch(location, e) {
   cityName = e.currentTarget.form[0].value;
   getLocationInformation();
   getNewsHeadlines();
-  currentLocationEl.textContent = "";
+  // currentLocationEl.textContent = "";
   forecastContainerEl.innerHTML = "";
 
   // Save the serached city name to local storage
