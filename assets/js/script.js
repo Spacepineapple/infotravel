@@ -27,10 +27,12 @@ let hiddenDiv = document.querySelector("#hidden-div");
 let hiddenFoot = document.querySelector("#hidden-foot");
 let imageDiv = document.querySelector("#image-div");
 let frontImage = document.querySelector("#front-image");
+let country;
 
 //Create an empty city name variable for later use to prevent scope issues
 let cityName = "";
 currency();
+//Create an empty country variable for later use to prevent scope issues
 
 //Define APIs and keys for subsequent use
 let newsAPIKey = "pub_165518ddbc391a0563b33c28f98a88bc39c78";
@@ -148,10 +150,6 @@ function doSearch(location, e) {
   localStorage.setItem(`${itemToSaveKey}`, `${itemToSaveKey}`);
   //Get the weather at the location
   getWeather(location);
-  //Get country information for the location
-  countryInfo();
-  //Get an image for the location
-  image();
 }
 
 //Add functionality to the search button
@@ -204,7 +202,7 @@ function countryInfo() {
   let Tcar = document.querySelector("#Tcar");
   let Tcontinent = document.querySelector("#Tcontinent");
   let Twebsite = document.querySelector("#Twebsite");
-  let country = locationInputEl.value;
+  
 
   //Query the API for details on the country
   fetch("https://restcountries.com/v3.1/name/" + country)
@@ -234,11 +232,10 @@ function countryInfo() {
 
 //Get an image that corresponds to the searched location
 function image() {
-  let Icountry = locationInputEl.value;
-
+  
   fetch(
     "https://pixabay.com/api/?key=33442906-03cc2a6146a25307dc8dd0c8d&q=" +
-      Icountry +
+      country +
       "&image_type=photo&category=" +
       "travel"
   )
@@ -253,18 +250,19 @@ function image() {
         //If the image is not suitable search the places API
         fetch(
           "https://pixabay.com/api/?key=33442906-03cc2a6146a25307dc8dd0c8d&q=" +
-            Icountry +
+            country +
             "&image_type=photo&category=" +
             "places"
-        );
+        )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          let imageCountry = document.querySelector("#image1");
+          imageCountry.src = data.hits[0].largeImageURL;
+        });
+    
       }
     })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      let imageCountry = document.querySelector("#image1");
-      imageCountry.src = data.hits[0].largeImageURL;
-    });
 }
 
 //Add functionality to the currency conversion button
@@ -355,6 +353,8 @@ function getNewsHeadlines() {
     }
   });
 }
+
+
 function getLocationInformation() {
   //Populate the API URL with the user's input city name and API key
   travelAPIURL = `http://api.opentripmap.com/0.1/en/places/geoname?name=${cityName}&apikey=${cityAPIKey}`;
@@ -368,12 +368,15 @@ function getLocationInformation() {
       let countryCode = cityData.country;
       //Use the country code to get the commonly used name for that country
       let countryNameURL = `https://restcountries.com/v3.1/alpha/${countryCode}`
-      let country;
       fetch(countryNameURL)
       .then(response => response.json())
       .then(countryData => {
         country = countryData[0].name.common;
         console.log(countryData);
+        //Get country information for the location
+        countryInfo();
+        //Get an image for the location
+        image();
       })
       //Get the latitude of the city
       let lat = cityData.lat;
