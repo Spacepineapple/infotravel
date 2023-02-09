@@ -190,11 +190,8 @@
               <div class="col-sm">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title" id="Tcountry"></h5>
-                    <p class="card-text mb-0" id="Tcapital"></p>
-                    <p class="mb-0" id = "Tcontinent"></p>
-                    <p class="mb-0" id = "Tcurrency"></p>
-                    <p class="mb-0" id = "TcurrencyCode"></p>
+                    
+                    
                   </div>
                 </div>
               </div>
@@ -203,10 +200,10 @@
               <div class="col-sm">
                 <div class="card">
                   <div id="test" class="card-body">
-                    <h5 class="card-title">Society</h5>
-                    <p class="card-text mb-0" id="Tlanguage" ></p>
-                    <p class="mb-0" id = "Tpop"></p>
-                    <p class="card-text" id="Twebsite"></p>
+                    
+                    
+                    
+                    <p class="card-text" ></p>
                   </div>
                 </div>
               </div>
@@ -215,9 +212,7 @@
               <div class="col-sm">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title">Driving</h5>
-                    <p class="card-text mb-0" id="Tdrive"></p>
-                    <p class="card-text" id="Tcar"></p>
+                    
                     <p class="card-text" id="Ttime"></p>
                   </div>
                 </div>
@@ -252,28 +247,39 @@
 
           </div>
         </div>
+
+        <!-- HERE -->
+
         <div class="col col-8"><!--Main-->
-          <div class="row mt-4">
+          <div class="row mt-4 text-center">
             <h3 id="city-name">City Name</h3>
+            <div class="text-center">
+            <img class="text-center" id="image1">
+            </div>
             <div class="gap-2 d-flex justify-content-center mt-4">
-              <div class="col col-6">
-                <img id="image1">
-                <h4>Description</h4>
-                <p id="city-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Numquam sint, officia provident maxime eum expedita natus illum
-                praesentium quis exercitationem, inventore, ipsa asperiores omnis
-                ratione minus esse voluptates eligendi dignissimos.</p>
-                <button type="button" class="btn btn-primary">
-                  Learn More
-                </button>
+              <div class="col col-4"> 
+                <h5 class="mt-2 mb-0" id="Tcountry">Description</h5>
+                <p class="mb-1 mt-0" id = "Tcontinent"></p>
+                <p class="mb-0" id="Tcapital"></p>
+                <p class="mb-0" id = "Tcurrency"></p>
               </div>
-              <div class="col col-6">
-                <img src="https://via.placeholder.com/150">
-                <p id="population">Population: XXX</p>
-                <p id="best-time">Best time to visit: XXX</p>
-                <p id="currency">Currency used: XXX</p>
-                <p id="timezone">Timezone: XXX</p>
+              <div class="col col-4">
+                <!-- <img src="https://via.placeholder.com/150"> -->
+                <h5 class="mt-2 mb-0">Society</h5>
+                <p class="mb-1 mt-0" id = "Tpop"></p>
+                <p class="mb-0" id="Tlanguage" ></p>
+                <p class="mb-0" id="Twebsite"></p>
               </div>
+              <div class="col col-4">
+                <h5 class="card-title">Driving</h5>
+                    <p class="mb-0" id="Tdrive"></p>
+                    <p class="mb-0" id="Tcar"></p>
+              </div>
+            </div>
+            <div class="text-center mt-2 mb-5">
+            <button id="learn-more" type="button" class="btn btn-primary mt-5">
+              Learn More
+            </button>
             </div>
           </div>
 
