@@ -3,7 +3,6 @@ let locationInputEl = document.querySelector("#location");
 let fromDateInputEl = document.querySelector("#from-date");
 let toDateInputEl = document.querySelector("#to-date");
 let searchBtnEl = document.querySelector("#search-btn");
-let currentLocationEl = document.querySelector("#current-location");
 let currentDateEl = document.querySelector("#current-date");
 let weatherDescriptionEl = document.querySelector("#weather-description");
 let currentWeatherIconEl = document.querySelector("#current-weather-icon");
@@ -29,10 +28,10 @@ let hiddenDiv = document.querySelector("#hidden-div");
 let hiddenFoot = document.querySelector("#hidden-foot");
 let imageDiv = document.querySelector("#image-div");
 let frontImage = document.querySelector("#front-image");
-let logoImg = document.querySelector("#logo-img")
-let learnMore = document.querySelector("#learn-more")
+let logoImg = document.querySelector("#logo-img");
+let learnMore = document.querySelector("#learn-more");
 
-logoImg.src = "./assets/image/logo.png"
+logoImg.src = "./assets/image/logo.png";
 
 let cityName = "";
 currency();
@@ -74,9 +73,7 @@ function getWeather(searchCity) {
     .then((res) => res.json())
     .then((data) => {
       let cityData = data[0];
-
-      currentLocationEl.textContent = cityData.name;
-
+      console.log(cityData);
       let cityLon = cityData.lon;
       let cityLat = cityData.lat;
       getWeatherData(cityLat, cityLon);
@@ -90,7 +87,6 @@ function getWeatherData(lat, lon) {
     .then((res) => res.json())
     .then((weatherData) => {
       let weatherInfo = weatherData.list;
-      // console.log(weatherData.list.country);
 
       // Display the current weather data on the screen
       currentDateEl.textContent = moment(weatherInfo[0].dt, "X").format(
@@ -139,13 +135,11 @@ function doSearch(location, e) {
   cityName = e.currentTarget.form[0].value;
   getLocationInformation();
   getNewsHeadlines();
-  currentLocationEl.textContent = "";
+  // currentLocationEl.textContent = "";
   forecastContainerEl.innerHTML = "";
 
   // Save the serached city name to local storage
-  let timeSearched = moment().format("ddd, MMM Do, h:mm A");
-  let itemToSaveKey = location;
-  localStorage.setItem(`${itemToSaveKey}`, `${itemToSaveKey}`);
+  localStorage.setItem(`${location}`, location);
 
   getWeather(location);
   countryInfo();
@@ -158,11 +152,10 @@ searchBtnEl.addEventListener("click", function (e) {
 });
 
 learnMore.addEventListener("click", function (event) {
-
-  let destination = locationInputEl.value
-  window.open("https://en.wikipedia.org/wiki/" + destination)
-  console.log(destination)
-})
+  let destination = locationInputEl.value;
+  window.open("https://en.wikipedia.org/wiki/" + destination);
+  console.log(destination);
+});
 
 savedLocationsBtnEl.addEventListener("click", function (e) {
   e.preventDefault();
@@ -219,8 +212,12 @@ function countryInfo() {
       Tlanguage.textContent = "Language: " + Object.values(data[0].languages);
       Tpop.textContent =
         "Population: " + data[0].population.toLocaleString("en-UK");
-      Tdrive.textContent = "People drive on the  " + data[0].car.side + " side of the road."
-      Tcar.textContent = "The country code on the license plate is '" + data[0].car.signs[0] + "'";
+      Tdrive.textContent =
+        "People drive on the  " + data[0].car.side + " side of the road.";
+      Tcar.textContent =
+        "The country code on the license plate is '" +
+        data[0].car.signs[0] +
+        "'";
       Tcontinent.textContent = data[0].region;
       Twebsite.textContent = "Internet code: " + data[0].tld[0];
     });
@@ -307,31 +304,37 @@ function currency() {
 function getNewsHeadlines() {
   let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`;
   fetch(newsURL)
-  .then((response) => response.json())
-  .then((newsData) => {
-    console.log(newsData);
-    for (let i=0; i<3; i++) {
-      let maxLength = 100;
-      const card = newsCards[i];
-      console.log(card);
-      const title = card.querySelector(".card-body").querySelector(".card-title");
-      title.textContent = newsData.results[i].title;
-      const newsText = card.querySelector(".card-body").querySelector(".card-text");
-      if (newsData.results[i].description == null) {
-        newsText.textContent = "No description available. Click to read this article"
-      } else {
-        newsText.textContent = newsData.results[i].description.substr(0, maxLength) + "...";
+    .then((response) => response.json())
+    .then((newsData) => {
+      console.log(newsData);
+      for (let i = 0; i < 3; i++) {
+        let maxLength = 100;
+        const card = newsCards[i];
+        console.log(card);
+        const title = card
+          .querySelector(".card-body")
+          .querySelector(".card-title");
+        title.textContent = newsData.results[i].title;
+        const newsText = card
+          .querySelector(".card-body")
+          .querySelector(".card-text");
+        if (newsData.results[i].description == null) {
+          newsText.textContent =
+            "No description available. Click to read this article";
+        } else {
+          newsText.textContent =
+            newsData.results[i].description.substr(0, maxLength) + "...";
+        }
+        const newsImage = card.querySelector(".card-img-top");
+        if (newsData.results[i].image_url == null) {
+          newsImage.setAttribute("src", "./assets/image/Newspapers.jpg");
+        } else {
+          newsImage.setAttribute("src", newsData.results[i].image_url);
+        }
+        console.log(newsData.results[i].title);
+        console.log(newsData.results[i].description);
       }
-      const newsImage = card.querySelector(".card-img-top");
-      if (newsData.results[i].image_url == null) {
-        newsImage.setAttribute("src", "./assets/image/Newspapers.jpg");
-      } else {
-        newsImage.setAttribute("src", newsData.results[i].image_url);
-      }
-      console.log(newsData.results[i].title);
-      console.log(newsData.results[i].description);
-    }
-  });
+    });
 }
 function getLocationInformation() {
   travelAPIURL = `http://api.opentripmap.com/0.1/en/places/geoname?name=${cityName}&apikey=${cityAPIKey}`;
@@ -344,42 +347,47 @@ function getLocationInformation() {
       let lon = cityData.lon;
       let radiusAPIURL = `https://api.opentripmap.com/0.1/en/places/radius?radius=1000&lon=${lon}&lat=${lat}&apikey=${cityAPIKey}`;
       fetch(radiusAPIURL)
-      .then((response => response.json()))
-      .then(placeData => {
-        //console.log(placeData)
-        let attractionHeadings = document.querySelectorAll(".attraction-heading");
-        let attractionDescriptions = document.querySelectorAll(".attraction-description");
-        let attractionImages = document.querySelectorAll(".attraction-image");
-        for (let i=0; i<6; i++) {
-          let attractionName = placeData.features[i].properties.name;
-          let popularity = placeData.features[i].properties.rate;
-          attractionHeadings[i].textContent = attractionName;
-          let xid = placeData.features[i].properties.xid;
-          const xidAPIURL = `https://api.opentripmap.com/0.1/en/places/xid/${xid}?apikey=${cityAPIKey}`;
-          fetch(xidAPIURL)
-          .then((response => response.json()))
-          .then(attractionData => {
-            console.log(attractionData);
-            let imageURL
-            try {
-              imageURL = attractionData.preview.source;
-            } catch (err) {
-              imageURL = "./assets/image/Placeholder_attraction.jpg";
-            }
-            attractionImages[i].setAttribute("src", `${imageURL}`);  
-            try {
-              attractionDescriptions[i].textContent = attractionData.wikipedia_extracts.text.substr(0, 200) + "...";
-            } catch (err) {
-              attractionDescriptions[i].textContent = "No description available for this attraction";
-              console.log(attractionData.address.country)
-            }
-          })
-        }
-        
-      }
-        );
-    })
-};
+        .then((response) => response.json())
+        .then((placeData) => {
+          //console.log(placeData)
+          let attractionHeadings = document.querySelectorAll(
+            ".attraction-heading"
+          );
+          let attractionDescriptions = document.querySelectorAll(
+            ".attraction-description"
+          );
+          let attractionImages = document.querySelectorAll(".attraction-image");
+          for (let i = 0; i < 6; i++) {
+            let attractionName = placeData.features[i].properties.name;
+            let popularity = placeData.features[i].properties.rate;
+            attractionHeadings[i].textContent = attractionName;
+            let xid = placeData.features[i].properties.xid;
+            const xidAPIURL = `https://api.opentripmap.com/0.1/en/places/xid/${xid}?apikey=${cityAPIKey}`;
+            fetch(xidAPIURL)
+              .then((response) => response.json())
+              .then((attractionData) => {
+                console.log(attractionData);
+                let imageURL;
+                try {
+                  imageURL = attractionData.preview.source;
+                } catch (err) {
+                  imageURL = "./assets/image/Placeholder_attraction.jpg";
+                }
+                attractionImages[i].setAttribute("src", `${imageURL}`);
+                try {
+                  attractionDescriptions[i].textContent =
+                    attractionData.wikipedia_extracts.text.substr(0, 200) +
+                    "...";
+                } catch (err) {
+                  attractionDescriptions[i].textContent =
+                    "No description available for this attraction";
+                  console.log(attractionData.address.country);
+                }
+              });
+          }
+        });
+    });
+}
 
 //getLocationInformation();
 

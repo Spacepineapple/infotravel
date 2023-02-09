@@ -1,44 +1,61 @@
+/* Font imports */
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap");
+
 :root {
+  /* Colours */
   --light-clr: #fdfffc;
   --dark-clr: #13070c;
   --gray-clr: #888384;
   --dark-gray-clr: #343232;
-  --accent-clr: #fca311;
+  --accent-clr: #ec6e4c;
+
+  /* Fonts */
+  --headings-font-family: "Montserrat", sans-serif;
+  --paragraphs-font-family: "Lato", sans-serif;
 }
 
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-}
-#logo-div{
-  background-color: white ;
+html {
+  scroll-behavior: smooth;
 }
 
-#nav-bar{
+body {
+  font-family: var(--paragraphs-font-family);
+  color: var(--dark-clr);
+  background: var(--light-clr);
+}
 
+aside,
+main,
+footer {
+  padding: 1.25rem !important;
+}
+
+.container {
+  padding: 1rem;
+}
+#logo-div {
+  background-color: white;
+}
+
+#nav-bar {
   background-color: white !important;
 }
 #logo-img {
-
   width: 100%;
   height: 50px;
 }
 
-#learn-more{
-
+#learn-more {
   width: 20%;
-
 }
 
-#image1{
-
+#image1 {
   width: 600px;
-  height: 500px
+  height: 500px;
 }
 
 h2 {
-  color: #fca311;
+  color: var(--accent-clr);
 }
 
 h3 {
@@ -48,12 +65,6 @@ h3 {
 h4,
 h5 {
   color: #888384;
-}
-
-button {
-  background-color: #fca311 !important;
-  border-color: #b36f10 !important;
-  color: white !important;
 }
 
 img {
@@ -70,12 +81,70 @@ i {
   height: 24px;
 }
 
+.section {
+  margin-top: 2.5rem !important;
+  margin-bottom: 2.5rem !important;
+}
+
+.section-title {
+  font-family: var(--headings-font-family);
+  font-size: 2rem;
+  font-weight: 600;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  text-align: left;
+  color: var(--dark-clr);
+}
+
+.city-name-title {
+  font-family: var(--headings-font-family);
+  font-size: 2rem;
+  font-weight: 600;
+  padding-bottom: 2rem;
+  text-align: left;
+  color: var(--dark-clr);
+}
+
+.card {
+  color: var(--light-clr);
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  margin-bottom: 20px;
+  color: var(--light-clr);
+  border: none !important;
+  color: var(--dark-gray-clr);
+}
+
+.btn-primary {
+  background: var(--accent-clr);
+  border-color: var(--accent-clr) !important;
+}
+
+.btn-primary:hover {
+  background: var(--light-clr);
+  border-color: var(--accent-clr) !important;
+  color: var(--dark-gray-clr);
+}
+
+.btn-secondary:hover {
+  background: var(--light-clr);
+  color: var(--dark-clr);
+}
+
 /* Current Weather Styles */
 .weather-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: var(--headings-font-family);
 }
+
+.current-weather-card {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .current-weather-header {
   display: flex;
   align-items: center;
@@ -90,9 +159,6 @@ i {
   width: 40%;
   align-items: center;
   justify-content: center;
-  /* margin: 0.5rem; */
-  /* padding: 0.5rem; */
-  border-right: 2px solid #eee;
 }
 
 .weather-icon {
@@ -109,7 +175,8 @@ i {
 
 .current-temp {
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 600;
+  color: var(--accent-clr);
 }
 
 .weather-right {
@@ -130,11 +197,15 @@ i {
 .label {
   text-transform: capitalize;
   font-weight: 500;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--dark-clr);
+  font-weight: 600;
 }
 
 .weather-value {
   line-height: 1rem;
+  font-weight: 600;
+  color: var(--gray-clr);
 }
 
 .value-unit {
@@ -187,4 +258,88 @@ i {
 
 .attraction {
   margin-bottom: 0.25rem;
+}
+
+/*Currency Converter*/
+.aside-title {
+  color: var(--dark-clr);
+  font-size: 1.5rem;
+  font-family: var(--headings-font-family);
+}
+
+.currency-input {
+  border-color: var(--dark-gray-clr) !important;
+}
+
+.currency-converter label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* News Feed */
+.news-card {
+  display: grid !important;
+  grid-template-columns: 1fr 3fr !important;
+  gap: 0.5rem !important;
+}
+
+.news-card img {
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: contain;
+}
+
+.news-card .card-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: var(--headings-font-family);
+  color: var(--dark-clr);
+}
+
+/* Testimonials */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.testimonial-card {
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  color: var(--light-clr);
+}
+.testimonial-header {
+  display: flex;
+  align-items: center;
+}
+
+.testimonial-header h3 {
+  color: var(--accent-clr);
+  font-size: 1rem;
+  font-family: var(--headings-font-family);
+  text-align: left;
+}
+
+.testimonial-img {
+  max-width: 50px;
+  max-height: 50px;
+  border: 3px solid var(--accent-clr);
+  font-weight: 500;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.testimonial-body {
+  font-size: 0.875rem;
+  color: var(--dark-gray-clr);
+  line-height: 1.2;
+  margin-top: 0.75rem;
+  text-align: left;
+}
+
+/* Call to Action */
+.cta-text {
+  font-size: 1.25rem !important;
+  text-align: left !important;
 }
