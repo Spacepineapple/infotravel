@@ -1,5 +1,4 @@
 //Create variables for each of the manipulated DOM elements
-let formContainer = document.querySelector("#search-form");
 let locationInputEl = document.querySelector("#location");
 let fromDateInputEl = document.querySelector("#from-date");
 let toDateInputEl = document.querySelector("#to-date");
@@ -38,7 +37,7 @@ currency();
 //Create an empty country variable for later use to prevent scope issues
 
 //Define APIs and keys for subsequent use
-let newsAPIKey = "pub_165518ddbc391a0563b33c28f98a88bc39c78";
+let newsAPIKey = "pub_163846ecaf8c51cdda7961c83e0673682ec1d";
 let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`;
 let apiKey = "40640050a45cbd8cf8d35ada1e14fee3";
 let cityAPIKey = "5ae2e3f221c38a28845f05b6fc79de7689f7ec4f4ccd8b2ae7179f74";
@@ -157,6 +156,7 @@ function doSearch(location, e) {
 searchBtnEl.addEventListener("click", function (e) {
   e.preventDefault();
   doSearch(locationInputEl.value.trim(), e);
+  locationInputEl.value = "";
 });
 
 //Add functionality to the learn more button to move to Wikipedia page
@@ -340,24 +340,32 @@ function getNewsHeadlines() {
       const card = newsCards[i];
       console.log(card);
       const title = card.querySelector(".card-body").querySelector(".card-title");
-      //Set the card title to the news headline
-      title.textContent = newsData.results[i].title;
       const newsText = card.querySelector(".card-body").querySelector(".card-text");
-      //If there is no description, display placeholder text
-      if (newsData.results[i].description == null) {
-        newsText.textContent = "No description available. Click to read this article"
-      } else {
-        //Otherwise, display the description but limit it to 100 characters
-        newsText.textContent = newsData.results[i].description.substr(0, maxLength) + "...";
-      }
       const newsImage = card.querySelector(".card-img-top");
-      //If there is no image, display a placeholder image
-      if (newsData.results[i].image_url == null) {
+      try {
+        //Set the card title to the news headline
+        title.textContent = newsData.results[i].title;
+        //If there is no description, display placeholder text
+        if (newsData.results[i].description == null) {
+          newsText.textContent = "No description available."
+        } else {
+          //Otherwise, display the description but limit it to 100 characters
+          newsText.textContent = newsData.results[i].description.substr(0, maxLength) + "...";
+        }
+        //If there is no image, display a placeholder image
+        if (newsData.results[i].image_url == null) {
+          newsImage.setAttribute("src", "./assets/image/Newspapers.jpg");
+        } else {
+          //Otherwise, display the image from the article
+          newsImage.setAttribute("src", newsData.results[i].image_url);
+        }  
+      } catch (err) {
+        title.textContent = "No News Found";
+        newsText.textContent = "No description available."
         newsImage.setAttribute("src", "./assets/image/Newspapers.jpg");
-      } else {
-        //Otherwise, display the image from the article
-        newsImage.setAttribute("src", newsData.results[i].image_url);
+
       }
+
       }
     });
 }
