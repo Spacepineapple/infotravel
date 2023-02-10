@@ -349,8 +349,8 @@ function getNewsHeadlines() {
         newsImage.setAttribute("src", "./assets/image/Newspapers.jpg");
 
       }
-    });
-}
+    };
+})}
 
 function getLocationInformation() {
   //Populate the API URL with the user's input city name and API key
@@ -429,5 +429,5 @@ function getLocationInformation() {
               });
           }
         });
-    });
-}
+    })
+};
