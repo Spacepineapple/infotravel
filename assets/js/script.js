@@ -84,7 +84,7 @@ function getWeatherData(lat, lon) {
       weatherDescriptionEl.textContent = weatherInfo[0].weather[0].description;
       currentWeatherIconEl.setAttribute(
         "src",
-        `http://openweathermap.org/img/wn/${weatherInfo[0].weather[0].icon}@2x.png`
+        `https://openweathermap.org/img/wn/${weatherInfo[0].weather[0].icon}@2x.png`
       );
       currentTempValueEl.textContent = weatherInfo[0].main.temp.toFixed();
       highTempValueEl.textContent = weatherInfo[0].main.temp_max.toFixed(2);
@@ -109,7 +109,7 @@ function getWeatherData(lat, lon) {
         let forecastTemp = forecast.main.temp.toFixed();
         forecastContainerEl.innerHTML += `
           <div class="forecast-card card">
-            <img class="weather-icon" src="http://openweathermap.org/img/wn/${forecastWeatherIconSrc}@2x.png" alt="Weather Icon" id="current-weather-icon">
+            <img class="weather-icon" src="https://openweathermap.org/img/wn/${forecastWeatherIconSrc}@2x.png" alt="Weather Icon" id="current-weather-icon">
             <div class="forecast-day">${day}</div>
             <div>${forecastTemp}&deg;</div>
           </div>
@@ -350,7 +350,7 @@ function getNewsHeadlines() {
 
 function getLocationInformation() {
   //Populate the API URL with the user's input city name and API key
-  travelAPIURL = `http://api.opentripmap.com/0.1/en/places/geoname?name=${cityName}&apikey=${cityAPIKey}`;
+  travelAPIURL = `https://api.opentripmap.com/0.1/en/places/geoname?name=${cityName}&apikey=${cityAPIKey}`;
   //Query the API and convert the response to JSON
   fetch(travelAPIURL)
     .then((response) => response.json())
