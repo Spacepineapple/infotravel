@@ -318,8 +318,8 @@ function getNewsHeadlines() {
     .then((newsData) => {
       console.log(newsData);
       //Take the first 3 articles
-      for (let i = 0; i < 3; i++) {
-        let maxLength = 100;
+      for (let i = 0; i < 5; i++) {
+        let maxLength = 75;
         //Get the corresponding card from the newsfeed
         const card = newsCards[i];
         console.log(card);
@@ -332,7 +332,7 @@ function getNewsHeadlines() {
         const newsImage = card.querySelector(".card-img-top");
         try {
           //Set the card title to the news headline
-          title.textContent = newsData.results[i].title;
+          title.textContent = newsData.results[i].title.substr(0, 50) + "...";
           //If there is no description, display placeholder text
           if (newsData.results[i].description == null) {
             newsText.textContent = "No description available.";
@@ -397,7 +397,7 @@ function getLocationInformation() {
           );
           let attractionImages = document.querySelectorAll(".attraction-image");
           //Get the first 6 results
-          for (let i = 0; i < 6; i++) {
+          for (let i = 0; i < 3; i++) {
             //Get the name of the attraction
             let attractionName = placeData.features[i].properties.name;
             //Set the heading of the attraction area row in index.html to the name
@@ -434,5 +434,5 @@ function getLocationInformation() {
               });
           }
         });
-    });
-}
+    })
+};
