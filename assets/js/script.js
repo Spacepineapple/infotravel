@@ -349,13 +349,9 @@ function getNewsHeadlines() {
 }
 
 function getLocationInformation() {
-<<<<<<< HEAD
-  travelAPIURL = `https://api.opentripmap.com/0.1/en/places/geoname?name=${cityName}&apikey=${cityAPIKey}`;
-=======
   //Populate the API URL with the user's input city name and API key
-  travelAPIURL = `http://api.opentripmap.com/0.1/en/places/geoname?name=${cityName}&apikey=${cityAPIKey}`;
+  travelAPIURL = `https://api.opentripmap.com/0.1/en/places/geoname?name=${cityName}&apikey=${cityAPIKey}`;
   //Query the API and convert the response to JSON
->>>>>>> 2a211612ca5c98ac7b8b3e8f475bb37c335545c7
   fetch(travelAPIURL)
     .then((response) => response.json())
     .then((cityData) => {
