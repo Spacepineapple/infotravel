@@ -69,25 +69,19 @@ footer {
   object-fit: cover !important;
 }
 
-/* #image1 {
-  width: 400px;
-  height: 400px;
-  object-fit: cover;
-} */
-
 h2 {
   color: var(--accent-clr);
 }
 
-h3 {
+/* h3 {
   color: #13070c;
   font-weight: bold;
-}
+} */
 
-img {
+/* img {
   height: 150px;
   width: 150px;
-}
+} */
 
 .nav-items {
   display: flex !important;
@@ -259,16 +253,6 @@ i {
   font-size: 0.75rem;
 }
 
-.floating-btn {
-  position: fixed;
-  bottom: 100px;
-  right: calc(100vw - 84vw);
-  background-color: var(--accent-clr);
-  color: var(--dark-clr);
-  font-weight: 500;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
-}
-
 .modal-location-btn {
   margin-bottom: 1rem;
 }
@@ -373,4 +357,16 @@ i {
 .cta-text {
   font-size: 1.25rem !important;
   text-align: left !important;
+}
+
+.attraction img {
+  min-width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.attraction-heading {
+  font-family: var(--headings-font-family);
+  font-size: 1.25rem !important;
+  font-weight: 600;
 }
