@@ -187,7 +187,6 @@ function countryInfo() {
   let Tcountry = document.querySelector("#Tcountry");
   let Tcapital = document.querySelector("#Tcapital");
   let Tcurrency = document.querySelector("#Tcurrency");
-  let TcurrencyCode = document.querySelector("#TcurrencyCode");
   let Tlanguage = document.querySelector("#Tlanguage");
   let Tpop = document.querySelector("#Tpop");
   let Tdrive = document.querySelector("#Tdrive");
@@ -225,7 +224,6 @@ function countryInfo() {
 
 //Get an image that corresponds to the searched location
 function image() {
-  // let country = document.querySelector('#location').value;
   fetch(
     "https://pixabay.com/api/?key=33442906-03cc2a6146a25307dc8dd0c8d&q=" +
       country +
