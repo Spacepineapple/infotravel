@@ -57,10 +57,9 @@ files and opening the index.html file in the browser. Select the search bar in
 the top right corner of the window and type the name of any city -- for example
 "London" or "Paris". Following this, click on the search button to be taken to a
 display of information about that city. Subsequent searches can then be made
-using the search bar at the top of the page in the same manner, the saved
-searches button in the bottom right corner of the page or using the "new search"
-or "saved destinations" buttons at the bottom of the main content block. If
-starting a new search, simply type the search location. If repeating a search
+using the search bar at the top of the page in the same manner or using the "new
+search" or "saved destinations" buttons at the bottom of the main content block.
+If starting a new search, simply type the search location. If repeating a search
 for a previously saved location, select the location from the list and click the
 corresponding button to reload information about that location.
 
