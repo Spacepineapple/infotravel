@@ -34,7 +34,13 @@ footer {
 
 .container {
   padding: 1rem;
+  overflow: hidden;
 }
+
+.splash-screen {
+  max-height: calc(100vh - 4rem);
+}
+
 #logo-div {
   background-color: white;
 }
