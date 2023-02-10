@@ -322,7 +322,6 @@ i {
 .testimonial-card {
   border-radius: 10px;
   padding: 10px;
-  /* box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; */
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   color: var(--light-clr);
 }
