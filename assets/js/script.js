@@ -34,7 +34,6 @@ logoImg.src = "./assets/image/logo.png";
 //Create an empty city name variable for later use to prevent scope issues
 let cityName = "";
 currency();
-//Create an empty country variable for later use to prevent scope issues
 
 //Define APIs and keys for subsequent use
 // let newsAPIKey = "pub_165518ddbc391a0563b33c28f98a88bc39c78";
@@ -42,14 +41,14 @@ let newsAPIKey = "pub_163846ecaf8c51cdda7961c83e0673682ec1d";
 let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`;
 let apiKey = "40640050a45cbd8cf8d35ada1e14fee3";
 let cityAPIKey = "5ae2e3f221c38a28845f05b6fc79de7689f7ec4f4ccd8b2ae7179f74";
+
 //Create an empty travelAPIURL for later use to prevent scope issues
 let travelAPIURL;
 
+// Initialize the views
 frontImage.src = "./assets/image/travel.jpg";
-
 frontImage.style.width = "100%";
 frontImage.style.height = "100%";
-
 imageDiv.hidden = false;
 hiddenDiv.hidden = true;
 hiddenFoot.hidden = true;
@@ -58,6 +57,7 @@ hiddenFoot.hidden = true;
 function getWeather(searchCity) {
   let queryUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${searchCity}&limit=5&appid=${apiKey}`;
 
+  // Fetch darta from the server
   fetch(queryUrl)
     .then((res) => res.json())
     .then((data) => {
@@ -102,6 +102,7 @@ function getWeatherData(lat, lon) {
         weatherInfo[32],
         weatherInfo[39],
       ];
+      // Dynamically render the forecast data for each dat on to the screen
       fiveDayForecastArr.forEach((forecast) => {
         let day = moment(forecast.dt, "X").format("dddd");
         let forecastWeatherIconSrc = forecast.weather[0].icon;
@@ -122,17 +123,14 @@ function doSearch(location, e) {
   hiddenDiv.hidden = false;
   hiddenFoot.hidden = false;
   imageDiv.hidden = true;
-  // cityName = e.currentTarget.form[0].value;
   cityName = location;
   //Get the attractions and information for that city
   getLocationInformation();
   //Get relevant news headlines for that city
   getNewsHeadlines();
-  // currentLocationEl.textContent = "";
   forecastContainerEl.innerHTML = "";
 
   // Save the serached city name to local storage
-  let timeSearched = moment().format("ddd, MMM Do, h:mm A");
   let itemToSaveKey = location;
   localStorage.setItem(`${itemToSaveKey}`, `${itemToSaveKey}`);
   //Get the weather at the location
@@ -150,7 +148,6 @@ searchBtnEl.addEventListener("click", function (e) {
 learnMore.addEventListener("click", function (event) {
   let destination = locationInputEl.value;
   window.open("https://en.wikipedia.org/wiki/" + destination);
-  console.log(destination);
 });
 
 //Add functionality to the saved locations button
@@ -190,7 +187,6 @@ function countryInfo() {
   let Tcountry = document.querySelector("#Tcountry");
   let Tcapital = document.querySelector("#Tcapital");
   let Tcurrency = document.querySelector("#Tcurrency");
-  let TcurrencyCode = document.querySelector("#TcurrencyCode");
   let Tlanguage = document.querySelector("#Tlanguage");
   let Tpop = document.querySelector("#Tpop");
   let Tdrive = document.querySelector("#Tdrive");
@@ -236,8 +232,6 @@ function image() {
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-
       if (data.hits.length) {
         let imageCountry = document.querySelector("#image1");
         imageCountry.src = data.hits[0].largeImageURL;
@@ -251,7 +245,6 @@ function image() {
         )
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
             let imageCountry = document.querySelector("#image1");
             imageCountry.src = data.hits[0].largeImageURL;
           });
@@ -316,13 +309,11 @@ function getNewsHeadlines() {
   fetch(newsURL)
     .then((response) => response.json())
     .then((newsData) => {
-      console.log(newsData);
       //Take the first 3 articles
       for (let i = 0; i < 5; i++) {
         let maxLength = 75;
         //Get the corresponding card from the newsfeed
         const card = newsCards[i];
-        console.log(card);
         const title = card
           .querySelector(".card-body")
           .querySelector(".card-title");
@@ -364,7 +355,6 @@ function getLocationInformation() {
   fetch(travelAPIURL)
     .then((response) => response.json())
     .then((cityData) => {
-      console.log(cityData);
       cityNameField.textContent = cityData.name;
       //Get the country code from the response
       let countryCode = cityData.country;
@@ -374,7 +364,6 @@ function getLocationInformation() {
         .then((response) => response.json())
         .then((countryData) => {
           country = countryData[0].name.common;
-          console.log(countryData);
           //Get country information for the location
           countryInfo();
           //Get an image for the location
@@ -409,7 +398,6 @@ function getLocationInformation() {
             fetch(xidAPIURL)
               .then((response) => response.json())
               .then((attractionData) => {
-                console.log(attractionData);
                 //Create a variable to hold the image URL
                 let imageURL;
                 //Attempt to get the attraction image URL
@@ -434,5 +422,5 @@ function getLocationInformation() {
               });
           }
         });
-    })
-};
+    });
+}

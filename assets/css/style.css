@@ -10,7 +10,7 @@
   --dark-gray-clr: #343232;
   --accent-clr: #ec6e4c;
 
-  /* Fonts */
+  /* Font */
   --headings-font-family: "Montserrat", sans-serif;
   --paragraphs-font-family: "Lato", sans-serif;
 }
@@ -73,16 +73,6 @@ h2 {
   color: var(--accent-clr);
 }
 
-/* h3 {
-  color: #13070c;
-  font-weight: bold;
-} */
-
-/* img {
-  height: 150px;
-  width: 150px;
-} */
-
 .nav-items {
   display: flex !important;
 }
@@ -125,7 +115,6 @@ i {
 
 .card {
   color: var(--light-clr);
-  /* box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; */
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   margin-bottom: 20px;
   color: var(--light-clr);
@@ -322,7 +311,6 @@ i {
 .testimonial-card {
   border-radius: 10px;
   padding: 10px;
-  /* box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; */
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   color: var(--light-clr);
 }
