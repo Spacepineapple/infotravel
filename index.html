@@ -25,7 +25,7 @@
   <div class="container text-center">
     <header class="row">
       <div class="col">
-        <nav id="nav-bar" class="navbar sticky-top bg-light">
+        <nav id="nav-bar" class="navbar fixed-top bg-light py-0">
           <div id="logo-div" class="container-fluid nav-items">
             <a class="navbar-brand" href="#">
               <img id="logo-img">
@@ -35,10 +35,10 @@
                 <form class="d-flex" role="search" id="search-form">
                   <input class="form-control me-2" type="search" placeholder="Location to visit" aria-label="Search"
                     id="location" />
-                  <button class="btn btn-outline-success me-2" type="submit" id="search-btn">
+                  <button class="btn btn-primary me-2" type="submit" id="search-btn">
                     Search
                   </button>
-                  <button class="btn btn-primary btn-sm" id="saved-btn" data-bs-toggle="modal"
+                  <button class="btn btn-secondary" id="saved-btn" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">Saved</button>
                 </form>
               </div>
@@ -49,7 +49,7 @@
     </header>
 
     <!-- Splash Screen -->
-    <div id="image-div">
+    <div id="image-div" class="splash-screen">
       <img id="front-image">
     </div>
 
@@ -59,6 +59,7 @@
       <aside class="col col-4 mt-3">
         <!--weather  -->
         <div class="row">
+          <div class="mb-2 text-start aside-title">Weather</div>
           <!-- Current Weather -->
           <div class="weather-header">
             <div class="current-date" id="current-date"></div>
@@ -147,30 +148,46 @@
         </div>
 
         <!--currency  -->
-        <div class="row mt-5 currency-converter">
+        <div class="row mt-4 currency-converter">
           <div class="mb-2 text-start aside-title">Currency Converter</div>
           <form>
             <div class="row">
-              <div class="col">
-                <label for="input-money" class="form-label text-start">From</label>
+              <div class="col text-start">
+                <label for="input-money" class="form-label">From</label>
                 <select id="from-select" class="form-control form-control-sm mb-2 currency-input" placeholder="From">
                 </select>
                 <input id="input-money" type="number" class="form-control currency-input" placeholder="Amount">
               </div>
-              <div class="col">
-                <label for="total-currency" class="form-label text-start">To</label>
+              <div class="col text-start">
+                <label for="total-currency" class="form-label">To</label>
                 <select id="to-select" class="form-control form-control-sm mb-2 currency-input">
                 </select>
                 <input id="total-currency" type="text" class="form-control mb-2 currency-input" readonly>
               </div>
             </div>
-            <button class="btn btn-secondary mt-2" id="convertBtn" type="button">Convert</button>
+            <div class="text-start mb-4">
+              <button class="btn btn-secondary mt-2" id="convertBtn" type="button">Convert</button>
+            </div>
           </form>
         </div>
 
         <!--News feed  -->
-        <div class="row mt-5 news-feed">
-          <h3 class="mb-2 text-start aside-title">News Feed</h3>
+        <div class="row mt-4 news-feed">
+          <div class="mb-2 text-start aside-title">News Feed</div>
+          <div class="card mb-3 news-card">
+            <img class="card-img-top" src="" alt="News article image">
+            <div class="card-body">
+              <h5 class="card-title text-start"></h5>
+              <p class="text-start text-muted card-text"></p>
+            </div>
+          </div>
+          <div class="card mb-3 news-card">
+            <img class="card-img-top" src="" alt="News article image">
+            <div class="card-body">
+              <h5 class="card-title text-start"></h5>
+              <p class="text-start text-muted card-text"></p>
+            </div>
+          </div>
           <div class="card mb-3 news-card">
             <img class="card-img-top" src="" alt="News article image">
             <div class="card-body">
@@ -198,32 +215,39 @@
 
       <!--Main-->
       <main class="col col-8 mt-3">
+        <!-- Hero -->
         <div class="row">
           <h2 class="city-name-title" id="city-name">City Name</h2>
-          <div class="text-center">
-            <img class="text-center" id="image1">
-          </div>
-          <div class="gap-2 d-flex justify-content-center mt-4">
-            <div class="col col-4">
-              <h5 class="mt-2 mb-0" id="Tcountry">Description</h5>
-              <p class="mb-1 mt-0" id="Tcontinent"></p>
-              <p class="mb-0" id="Tcapital"></p>
-              <p class="mb-0" id="Tcurrency"></p>
+          <div class="row">
+            <div class="col-8">
+              <div class="text-center hero-image-container">
+                <img class="img-fluid rounded mx-auto d-block" id="image1">
+              </div>
             </div>
-            <div class="col col-4">
-              <h5 class="mt-2 mb-0">Society</h5>
-              <p class="mb-1 mt-0" id="Tpop"></p>
-              <p class="mb-0" id="Tlanguage"></p>
-              <p class="mb-0" id="Twebsite"></p>
-            </div>
-            <div class="col col-4">
-              <h5 class="card-title">Driving</h5>
-              <p class="mb-0" id="Tdrive"></p>
-              <p class="mb-0" id="Tcar"></p>
+            <div class="col">
+              <div class="gap-3 justify-content-center">
+                <div class="text-start">
+                  <h3 class="mb-1 hero-subtitle" id="Tcountry">Description</h3>
+                  <p class="mb-0 text-muted" id="Tcontinent"></p>
+                  <p class="mb-0 text-muted" id="Tcapital"></p>
+                  <p class="mb-0 text-muted" id="Tcurrency"></p>
+                </div>
+                <div class="text-start mt-3">
+                  <h3 class="mb-1 hero-subtitle">Society</h3>
+                  <p class="mb-0 text-muted" id="Tpop"></p>
+                  <p class="mb-0 text-muted" id="Tlanguage"></p>
+                  <p class="mb-0 text-muted" id="Twebsite"></p>
+                </div>
+                <div class="text-start mt-3">
+                  <h3 class="mb-1 hero-subtitle">Driving</h3>
+                  <p class="mb-0 text-muted" id="Tdrive"></p>
+                  <p class="mb-0 text-muted" id="Tcar"></p>
+                </div>
+              </div>
             </div>
           </div>
           <div class="text-start">
-            <button id="learn-more" type="button" class="btn btn-primary">
+            <button id="learn-more" type="button" class="btn btn-secondary mt-4">
               Learn More
             </button>
           </div>
@@ -232,13 +256,13 @@
         <!-- Popular Places -->
         <div class="row">
           <h2 class="section-title">Popular Places to Visit</h2>
-          <div class="row attraction">
-            <div class="col-2">
-              <img class="attraction-image" src="https://via.placeholder.com/150">
+          <div class="row attraction mb-4">
+            <div class="col-5">
+              <img class="img-fluid rounded mx-auto d-block attraction-image" src="https://via.placeholder.com/150">
             </div>
-            <div class="col-9">
-              <div class="d-flex flex-column attraction-section">
-                <h4 class="attraction-heading">Description</h4>
+            <div class="col-7">
+              <div class="d-flex flex-column text-start attraction-section">
+                <h3 class="attraction-heading mb-2">Description</h3>
                 <p class="attraction-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos,
                   aperiam! Quis, iure repudiandae! Est voluptate culpa eum enim sit
                   necessitatibus quia cupiditate! Porro amet magni ad exercitationem
@@ -246,13 +270,13 @@
               </div>
             </div>
           </div>
-          <div class="row attraction">
-            <div class="col-2">
-              <img class="attraction-image" src="https://via.placeholder.com/150">
+          <div class="row attraction mb-4">
+            <div class="col-5">
+              <img class="img-fluid rounded mx-auto d-block attraction-image" src="https://via.placeholder.com/150">
             </div>
-            <div class="col-9">
-              <div class="d-flex flex-column attraction-section">
-                <h4 class="attraction-heading">Description</h4>
+            <div class="col-7">
+              <div class="d-flex flex-column text-start attraction-section">
+                <h3 class="attraction-heading mb-2">Description</h3>
                 <p class="attraction-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos,
                   aperiam! Quis, iure repudiandae! Est voluptate culpa eum enim sit
                   necessitatibus quia cupiditate! Porro amet magni ad exercitationem
@@ -260,13 +284,13 @@
               </div>
             </div>
           </div>
-          <div class="row attraction">
-            <div class="col-2">
-              <img class="attraction-image" src="https://via.placeholder.com/150">
+          <div class="row attraction mb-4">
+            <div class="col-5">
+              <img class="img-fluid rounded mx-auto d-block attraction-image" src="https://via.placeholder.com/150">
             </div>
-            <div class="col-9">
-              <div class="d-flex flex-column attraction-section">
-                <h4 class="attraction-heading">Description</h4>
+            <div class="col-7">
+              <div class="d-flex flex-column text-start attraction-section">
+                <h3 class="attraction-heading mb-2">Description</>
                 <p class="attraction-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos,
                   aperiam! Quis, iure repudiandae! Est voluptate culpa eum enim sit
                   necessitatibus quia cupiditate! Porro amet magni ad exercitationem
@@ -274,13 +298,13 @@
               </div>
             </div>
           </div>
-          <div class="row attraction">
-            <div class="col-2">
-              <img class="attraction-image" src="https://via.placeholder.com/150">
+          <!-- <div class="row attraction mb-4">
+            <div class="col-5">
+              <img class="img-fluid rounded mx-auto d-block attraction-image" src="https://via.placeholder.com/150">
             </div>
-            <div class="col-9">
-              <div class="d-flex flex-column attraction-section">
-                <h4 class="attraction-heading">Description</h4>
+            <div class="col-7">
+              <div class="d-flex flex-column text-start attraction-section">
+                <h3 class="attraction-heading mb-2">Description</h3>
                 <p class="attraction-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos,
                   aperiam! Quis, iure repudiandae! Est voluptate culpa eum enim sit
                   necessitatibus quia cupiditate! Porro amet magni ad exercitationem
@@ -288,13 +312,13 @@
               </div>
             </div>
           </div>
-          <div class="row attraction">
-            <div class="col-2">
-              <img class="attraction-image" src="https://via.placeholder.com/150">
+          <div class="row attraction mb-4">
+            <div class="col-5">
+              <img class="img-fluid rounded mx-auto d-block attraction-image" src="https://via.placeholder.com/150">
             </div>
-            <div class="col-9">
-              <div class="d-flex flex-column attraction-section">
-                <h4 class="attraction-heading">Description</h4>
+            <div class="col-7">
+              <div class="d-flex flex-column text-start attraction-section">
+                <h3 class="attraction-heading mv-2">Description</h3>
                 <p class="attraction-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos,
                   aperiam! Quis, iure repudiandae! Est voluptate culpa eum enim sit
                   necessitatibus quia cupiditate! Porro amet magni ad exercitationem
@@ -302,24 +326,24 @@
               </div>
             </div>
           </div>
-          <div class="row attraction">
-            <div class="col-2">
-              <img class="attraction-image" src="https://via.placeholder.com/150">
+          <div class="row attraction mb-4">
+            <div class="col-5">
+              <img class="img-fluid rounded mx-auto d-block attraction-image" src="https://via.placeholder.com/150">
             </div>
-            <div class="col-9">
-              <div class="d-flex flex-column attraction-section">
-                <h4 class="attraction-heading">Description</h4>
+            <div class="col-7">
+              <div class="d-flex flex-column text-start attraction-section">
+                <h3 class="attraction-heading">Description</h3>
                 <p class="attraction-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos,
                   aperiam! Quis, iure repudiandae! Est voluptate culpa eum enim sit
                   necessitatibus quia cupiditate! Porro amet magni ad exercitationem
                   libero. Suscipit, saepe!</p>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <!-- Testimonials -->
-        <div class="row testimonial section">
+        <div class="row testimonial">
           <h2 class="section-title">Others are saying ...</h2>
           <div class="testimonial-grid">
             <div class="testimonial-card">

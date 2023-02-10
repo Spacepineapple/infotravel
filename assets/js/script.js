@@ -314,40 +314,45 @@ function getNewsHeadlines() {
   let newsURL = `https://newsdata.io/api/1/news?apikey=${newsAPIKey}&language=en&qInTitle=${cityName}`;
   //Get data from API and convert to JSON
   fetch(newsURL)
-  .then((response) => response.json())
-  .then((newsData) => {
-    console.log(newsData);
-    //Take the first 3 articles
-    for (let i=0; i<3; i++) {
-      let maxLength = 100;
-      //Get the corresponding card from the newsfeed
-      const card = newsCards[i];
-      console.log(card);
-      const title = card.querySelector(".card-body").querySelector(".card-title");
-      const newsText = card.querySelector(".card-body").querySelector(".card-text");
-      const newsImage = card.querySelector(".card-img-top");
-      try {
-        //Set the card title to the news headline
-        title.textContent = newsData.results[i].title;
-        //If there is no description, display placeholder text
-        if (newsData.results[i].description == null) {
-          newsText.textContent = "No description available."
-        } else {
-          //Otherwise, display the description but limit it to 100 characters
-          newsText.textContent = newsData.results[i].description.substr(0, maxLength) + "...";
-        }
-        //If there is no image, display a placeholder image
-        if (newsData.results[i].image_url == null) {
+    .then((response) => response.json())
+    .then((newsData) => {
+      console.log(newsData);
+      //Take the first 3 articles
+      for (let i = 0; i < 3; i++) {
+        let maxLength = 100;
+        //Get the corresponding card from the newsfeed
+        const card = newsCards[i];
+        console.log(card);
+        const title = card
+          .querySelector(".card-body")
+          .querySelector(".card-title");
+        const newsText = card
+          .querySelector(".card-body")
+          .querySelector(".card-text");
+        const newsImage = card.querySelector(".card-img-top");
+        try {
+          //Set the card title to the news headline
+          title.textContent = newsData.results[i].title;
+          //If there is no description, display placeholder text
+          if (newsData.results[i].description == null) {
+            newsText.textContent = "No description available.";
+          } else {
+            //Otherwise, display the description but limit it to 100 characters
+            newsText.textContent =
+              newsData.results[i].description.substr(0, maxLength) + "...";
+          }
+          //If there is no image, display a placeholder image
+          if (newsData.results[i].image_url == null) {
+            newsImage.setAttribute("src", "./assets/image/Newspapers.jpg");
+          } else {
+            //Otherwise, display the image from the article
+            newsImage.setAttribute("src", newsData.results[i].image_url);
+          }
+        } catch (err) {
+          title.textContent = "No News Found";
+          newsText.textContent = "No description available.";
           newsImage.setAttribute("src", "./assets/image/Newspapers.jpg");
-        } else {
-          //Otherwise, display the image from the article
-          newsImage.setAttribute("src", newsData.results[i].image_url);
-        }  
-      } catch (err) {
-        title.textContent = "No News Found";
-        newsText.textContent = "No description available."
-        newsImage.setAttribute("src", "./assets/image/Newspapers.jpg");
-
+        }
       }
     };
 })}

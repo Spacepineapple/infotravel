@@ -23,6 +23,7 @@ body {
   font-family: var(--paragraphs-font-family);
   color: var(--dark-clr);
   background: var(--light-clr);
+  padding-top: 2rem;
 }
 
 aside,
@@ -33,7 +34,13 @@ footer {
 
 .container {
   padding: 1rem;
+  overflow: hidden;
 }
+
+.splash-screen {
+  max-height: calc(100vh - 4rem);
+}
+
 #logo-div {
   background-color: white;
 }
@@ -50,29 +57,31 @@ footer {
   width: 20%;
 }
 
+.hero-image-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 #image1 {
-  width: 600px;
-  height: 500px;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover !important;
 }
 
 h2 {
   color: var(--accent-clr);
 }
 
-h3 {
+/* h3 {
   color: #13070c;
   font-weight: bold;
-}
+} */
 
-h4,
-h5 {
-  color: #888384;
-}
-
-img {
+/* img {
   height: 150px;
   width: 150px;
-}
+} */
 
 .nav-items {
   display: flex !important;
@@ -107,9 +116,17 @@ i {
   color: var(--dark-clr);
 }
 
+.hero-subtitle {
+  font-family: var(--headings-font-family);
+  font-size: 1.25rem !important;
+  font-weight: 500;
+  color: var(--dark-gray-clr);
+}
+
 .card {
   color: var(--light-clr);
-  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  /* box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; */
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   margin-bottom: 20px;
   color: var(--light-clr);
   border: none !important;
@@ -237,16 +254,6 @@ i {
   font-size: 0.75rem;
 }
 
-.floating-btn {
-  position: fixed;
-  bottom: 100px;
-  right: calc(100vw - 84vw);
-  background-color: var(--accent-clr);
-  color: var(--dark-clr);
-  font-weight: 500;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
-}
-
 .modal-location-btn {
   margin-bottom: 1rem;
 }
@@ -264,7 +271,8 @@ i {
 }
 
 /* Resize images but maintain aspect ratio */
-.attraction-image, .news-image {
+.attraction-image,
+.news-image {
   object-fit: cover;
 }
 
@@ -291,13 +299,11 @@ i {
   gap: 0.5rem !important;
 }
 
-
 .news-card img {
   max-width: 100px;
   max-height: 100px;
   object-fit: contain;
 }
-
 
 .news-card .card-title {
   font-size: 0.875rem;
@@ -316,7 +322,8 @@ i {
 .testimonial-card {
   border-radius: 10px;
   padding: 10px;
-  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  /* box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; */
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   color: var(--light-clr);
 }
 .testimonial-header {
@@ -352,4 +359,16 @@ i {
 .cta-text {
   font-size: 1.25rem !important;
   text-align: left !important;
+}
+
+.attraction img {
+  min-width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.attraction-heading {
+  font-family: var(--headings-font-family);
+  font-size: 1.25rem !important;
+  font-weight: 600;
 }
