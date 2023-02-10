@@ -25,7 +25,7 @@
   <div class="container text-center">
     <header class="row">
       <div class="col">
-        <nav id="nav-bar" class="navbar fixed-top bg-light">
+        <nav id="nav-bar" class="navbar fixed-top bg-light py-0">
           <div id="logo-div" class="container-fluid nav-items">
             <a class="navbar-brand" href="#">
               <img id="logo-img">
@@ -204,30 +204,36 @@
         <!-- Hero -->
         <div class="row">
           <h2 class="city-name-title" id="city-name">City Name</h2>
-          <div class="text-center">
-            <img class="text-center" id="image1">
-          </div>
-          <div class="gap-2 d-flex justify-content-center mt-4">
-            <div class="col col-4">
-              <h5 class="mt-2 mb-0" id="Tcountry">Description</h5>
-              <p class="mb-1 mt-0" id="Tcontinent"></p>
-              <p class="mb-0" id="Tcapital"></p>
-              <p class="mb-0" id="Tcurrency"></p>
+          <div class="row">
+            <div class="col-8">
+              <div class="text-center hero-image-container">
+                <img class="img-fluid rounded mx-auto d-block" id="image1">
+              </div>
             </div>
-            <div class="col col-4">
-              <h5 class="mt-2 mb-0">Society</h5>
-              <p class="mb-1 mt-0" id="Tpop"></p>
-              <p class="mb-0" id="Tlanguage"></p>
-              <p class="mb-0" id="Twebsite"></p>
-            </div>
-            <div class="col col-4">
-              <h5 class="card-title">Driving</h5>
-              <p class="mb-0" id="Tdrive"></p>
-              <p class="mb-0" id="Tcar"></p>
+            <div class="col">
+              <div class="gap-3 justify-content-center">
+                <div class="text-start">
+                  <h3 class="mb-1 hero-subtitle" id="Tcountry">Description</h3>
+                  <p class="mb-0 text-muted" id="Tcontinent"></p>
+                  <p class="mb-0 text-muted" id="Tcapital"></p>
+                  <p class="mb-0 text-muted" id="Tcurrency"></p>
+                </div>
+                <div class="text-start mt-3">
+                  <h3 class="mb-1 hero-subtitle">Society</h3>
+                  <p class="mb-0 text-muted" id="Tpop"></p>
+                  <p class="mb-0 text-muted" id="Tlanguage"></p>
+                  <p class="mb-0 text-muted" id="Twebsite"></p>
+                </div>
+                <div class="text-start mt-3">
+                  <h3 class="mb-1 hero-subtitle">Driving</h3>
+                  <p class="mb-0 text-muted" id="Tdrive"></p>
+                  <p class="mb-0 text-muted" id="Tcar"></p>
+                </div>
+              </div>
             </div>
           </div>
           <div class="text-start">
-            <button id="learn-more" type="button" class="btn btn-secondary mt-1">
+            <button id="learn-more" type="button" class="btn btn-secondary mt-4">
               Learn More
             </button>
           </div>
