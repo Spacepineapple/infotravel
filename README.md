@@ -42,7 +42,19 @@ would be assessed. The page needed to:
 10. Have a quality README
 
 Additionally, a key part of this project task was to ensure that we understood
-and were able to successfully navigate Git, GitHub and concepts such as branching.
+and were able to successfully navigate Git, GitHub and concepts such as
+branching.
+
+On first opening index.html or loading the live version of the page, a user
+should see the start screen as follows:
+![Screenshot of start screen](./assets/image/OpeningPage.png)
+
+After searching for a location or selecting a previously selected location, a
+user will then be shown a different page with information for that location. The
+images below show the two portions of the page
+![Screenshot of top half of main page](./assets/image/MainContentTop.png)
+
+![Screenshot of bottom half of main page](./assets/image/MainContentBottom.png)
 
 ## Installation <a id="installation"></a>
 
