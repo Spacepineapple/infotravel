@@ -224,6 +224,7 @@ function countryInfo() {
 
 //Get an image that corresponds to the searched location
 function image() {
+  country = cityName;
   fetch(
     "https://pixabay.com/api/?key=33442906-03cc2a6146a25307dc8dd0c8d&q=" +
       country +
