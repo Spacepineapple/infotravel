@@ -1,4 +1,4 @@
-# Travel Information Finder
+# InfoTravel Travel Information Finder
 
 ## Table of Contents
 1. [URL](#url)
@@ -9,7 +9,7 @@
 
 ## URL <a id="url"></a>
 
-A live version of this page has been deployed at 
+A live version of this page has been deployed at https://spacepineapple.github.io/infotravel-travel-information/
 
 ## Description <a id="description"></a>
 
