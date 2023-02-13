@@ -184,23 +184,23 @@ document.addEventListener("click", searchPreviousCity);
 //Get information about the queried country
 function countryInfo() {
   //Create variables with assigned data for each of the placeholder elements
-  let Tcountry = document.querySelector("#Tcountry");
-  let Tcapital = document.querySelector("#Tcapital");
-  let Tcurrency = document.querySelector("#Tcurrency");
-  let Tlanguage = document.querySelector("#Tlanguage");
-  let Tpop = document.querySelector("#Tpop");
-  let Tdrive = document.querySelector("#Tdrive");
-  let Tcar = document.querySelector("#Tcar");
-  let Tcontinent = document.querySelector("#Tcontinent");
-  let Twebsite = document.querySelector("#Twebsite");
+  let countryEl = document.querySelector("#country-description");
+  let capitalEl = document.querySelector("#capital-description");
+  let currencyEl = document.querySelector("#currency-description");
+  let languageEl = document.querySelector("#language-description");
+  let popEl = document.querySelector("#pop-description");
+  let driveEl = document.querySelector("#drive-description");
+  let carEl = document.querySelector("#car-description");
+  let continentEl = document.querySelector("#continent-description");
+  let websiteEl = document.querySelector("#website-description");
 
   //Query the API for details on the country
   fetch("https://restcountries.com/v3.1/name/" + country)
     .then((response) => response.json())
     .then((data) => {
-      Tcountry.textContent = data[0].altSpellings[1] + " " + data[0].flag;
-      Tcapital.textContent = "Capital: " + data[0].capital;
-      Tcurrency.textContent =
+      countryEl.textContent = data[0].altSpellings[1] + " " + data[0].flag;
+      capitalEl.textContent = "Capital: " + data[0].capital;
+      currencyEl.textContent =
         "Currency: " +
         Object.values(data[0].currencies)[0].name +
         " (" +
@@ -208,17 +208,17 @@ function countryInfo() {
         " " +
         Object.keys(data[0].currencies)[0] +
         ")";
-      Tlanguage.textContent = "Language: " + Object.values(data[0].languages);
-      Tpop.textContent =
+      languageEl.textContent = "Language: " + Object.values(data[0].languages);
+      popEl.textContent =
         "Population: " + data[0].population.toLocaleString("en-UK");
-      Tdrive.textContent =
+      driveEl.textContent =
         "People drive on the  " + data[0].car.side + " side of the road.";
-      Tcar.textContent =
+      carEl.textContent =
         "The country code on the license plate is '" +
         data[0].car.signs[0] +
         "'";
-      Tcontinent.textContent = data[0].region;
-      Twebsite.textContent = "Internet code: " + data[0].tld[0];
+      continentEl.textContent = data[0].region;
+      websiteEl.textContent = "Internet code: " + data[0].tld[0];
     });
 }
 
