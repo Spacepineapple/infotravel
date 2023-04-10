@@ -140,8 +140,12 @@ function doSearch(location, e) {
 //Add functionality to the search button
 searchBtnEl.addEventListener("click", function (e) {
   e.preventDefault();
-  doSearch(locationInputEl.value.trim(), e);
-  locationInputEl.value = "";
+  if (locationInputEl.value==="") {
+    alert("Search city cannot be blank. Please type a location and then try your search again.");
+  } else {
+    doSearch(locationInputEl.value.trim(), e);
+    locationInputEl.value = "";  
+  }
 });
 
 //Add functionality to the learn more button to move to Wikipedia page
