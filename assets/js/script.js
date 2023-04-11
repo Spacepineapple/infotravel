@@ -47,8 +47,6 @@ let travelAPIURL;
 
 // Initialize the views
 frontImage.src = "./assets/image/travel.jpg";
-frontImage.style.width = "100%";
-frontImage.style.height = "100%";
 imageDiv.hidden = false;
 hiddenDiv.hidden = true;
 hiddenFoot.hidden = true;

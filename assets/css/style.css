@@ -38,7 +38,10 @@ footer {
 }
 
 .splash-screen {
-  max-height: calc(100vh - 4rem);
+  max-height: calc(100vh - 5rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #logo-div {
@@ -48,6 +51,7 @@ footer {
 #nav-bar {
   background-color: white !important;
 }
+
 #logo-img {
   width: 100%;
   height: 50px;
@@ -363,6 +367,12 @@ i {
 
 .main-content-row {
   display: flex;
+}
+
+#front-image {
+  height: 90%;
+  width: 90%;
+  object-fit: contain;
 }
 
 @media only screen and (max-width: 768px) {
