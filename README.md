@@ -9,7 +9,7 @@
 
 ## URL <a id="url"></a>
 
-A live version of this page has been deployed at https://spacepineapple.github.io/infotravel-travel-information/
+A live version of this page has been deployed at https://spacepineapple.github.io/infotravel/
 
 ## Description <a id="description"></a>
 
